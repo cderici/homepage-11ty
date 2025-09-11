@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title or "Home" }} · {{ site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/assets/site.css" rel="stylesheet">
+</head>
+<body>
+  {% include "header.njk" %}
+  <main id="content">
+    {{ content | safe }}
+  </main>
+  {% include "footer.njk" %}
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>
+

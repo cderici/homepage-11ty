@@ -1,0 +1,26 @@
+{
+  "name": "homepage-11ty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve --input=src --output=_site",
+    "build": "eleventy --input=src --output=_site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cderici/homepage-11ty.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cderici/homepage-11ty/issues"
+  },
+  "homepage": "https://github.com/cderici/homepage-11ty#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "luxon": "^3.7.2"
+  }
+}
