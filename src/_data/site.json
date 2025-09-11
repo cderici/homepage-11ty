@@ -5,6 +5,25 @@
   "location": "Sandy, UT, USA",
   "social": {
     "github": "cderici",
-    "linkedin": "caner-derici"
-  }
+    "youtube": "UCQUqjj5SfL9vfJxJ53ygN7w",
+    "twitch": "lambda_cd",
+    "instagram": "caner.derici",
+    "linkedin": "caner-derici-0619b0aa",
+    "twitter": "canerderici"
+  },
+  "links": {
+    "website": "https://dericilab.live"
+  },
+  "nav": [
+    { "href": "/index.html", "label": "Home" },
+    { "href": "/cv.html", "label": "Professional" },
+    { "href": "/homelab.html", "label": "HomeLab" },
+    { "href": "/content.html", "label": "Building a Community" },
+    { "href": "/bike.html", "label": "Bike" },
+    { "href": "/music.html", "label": "Music" },
+    { "href": "/artsy.html", "label": "Artsy" },
+    { "href": "/travel.html", "label": "Travel" },
+    { "href": "/arch.html", "label": "Arch" },
+    { "href": "/masters.html", "label": "Masters Tribute Page" }
+  ]
 }

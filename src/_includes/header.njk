@@ -1,8 +1,15 @@
-<header class="site-header">
-  <div class="brand">
-    <a href="/">{{ site.title }}</a>
-    {% if site.tagline %}<span class="tagline">{{ site.tagline }}</span>{% endif %}
-  </div>
-  <!-- We'll add real nav after we port your pages -->
-</header>
+{# src/_includes/header.njk #}
+<div class="w3-bar">
+  {# current route #}
+  {% set current = page.url or '/' %}
 
+  {% for item in site.nav %}
+    {# active when url matches; also treat "/" as /index.html #}
+    {% set isActive = (current == item.href) or (current == '/' and item.href == '/index.html') %}
+
+    <a href="{{ item.href }}"
+       class="w3-bar-item w3-button w3-mobile {% if isActive %}w3-deep-orange{% endif %} w3-hover-deep-orange">
+      {{ item.label }}
+    </a>
+  {% endfor %}
+</div>

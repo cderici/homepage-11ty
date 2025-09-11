@@ -3,12 +3,46 @@ layout: base.njk
 title: Home
 ---
 
-<h1>{{ site.title }}</h1>
-<p>Hello, I’m {{ site.title | replace(", Ph.D.", "") }}. This page is rendered by Eleventy.</p>
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+  <div class="w3-row-padding">
 
-<ul>
-  <li>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-  <li>GitHub: <a href="https://github.com/{{ site.social.github }}">{{ site.social.github }}</a></li>
-  <li>Location: {{ site.location }}</li>
-</ul>
+    <!-- Left Column -->
+    <div class="w3-quarter">
+      {% include "left-card.njk" %}
+    </div>
 
+    <!-- Right Column -->
+    <div class="w3-threequarter">
+      {% include "header.njk" %}
+
+      <section class="w3-container">
+        <h1 class="w3-text-white">{{ site.title }}</h1>
+
+        <p class="w3-large">
+          Hi! I’m Caner Derici. I’m a software engineer, Ph.D. in computer science, homelabber, content creator, biker, and guitarist.
+        </p>
+
+        <p>
+          I specialize in compilers & programming languages, with industry experience in distributed systems at Canonical (Juju, Go, Python).
+          I received my Ph.D. from Indiana University. My dissertation is titled
+          <em>“Self-Hosting Functional Programming Languages on Meta-Tracing JIT Compilers.”</em>
+        </p>
+
+        <p>
+          Check out:
+          <a href="/cv.html">Professional</a>,
+          <a href="/homelab.html">HomeLab</a>,
+          <a href="/content.html">Building a Community</a>,
+          <a href="/bike.html">Bike</a>,
+          <a href="/music.html">Music</a>,
+          <a href="/artsy.html">Artsy</a>,
+          <a href="/travel.html">Travel</a>, and
+          <a href="/arch.html">Arch</a>.
+        </p>
+
+        {# We’ll port your news/posts section next as a reusable include #}
+      </section>
+
+    </div><!-- /Right -->
+  </div><!-- /Row -->
+</div><!-- /Container -->
