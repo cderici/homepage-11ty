@@ -1,0 +1,29 @@
+[
+  {
+    "month": "June 2023",
+    "items": [
+      {
+        "title": "Manual Provisioning on AWS using Terraform Juju Provider",
+        "url": "https://discourse.charmhub.io/t/manual-provisioning-on-aws-using-terraform-juju-provider/10989",
+        "blurb": "Exploring how to manually provision machines from an existing setup into a Juju model using the Terraform Juju provider.",
+        "extra": [
+          ["intro", "https://discourse.charmhub.io/t/introducing-the-juju-terraform-provider/6939"],
+          ["k8s proxy-alt", "https://discourse.charmhub.io/t/a-generic-way-to-communicate-with-a-juju-controller-on-a-k8s-cluster-with-the-juju-terraform-provider/10967"],
+          ["manual provisioning PR", "https://github.com/juju/terraform-provider-juju/pull/212"],
+          ["provider repo", "https://github.com/juju/terraform-provider-juju"]
+        ]
+      },
+      {
+        "title": "A generic way to tunnel into a Kubernetes cluster…",
+        "url": "https://discourse.charmhub.io/t/a-generic-way-to-communicate-with-a-juju-controller-on-a-k8s-cluster-with-the-juju-terraform-provider/10967",
+        "blurb": "Demonstrating access to a controller inside any k8s cluster without proxy-config support—load balancer is the key.",
+        "extra": [
+          ["intro", "https://discourse.charmhub.io/t/introducing-the-juju-terraform-provider/6939"],
+          ["terraform", "https://www.terraform.io/"],
+          ["related issue", "https://github.com/juju/terraform-provider-juju/issues/135"]
+        ]
+      }
+    ]
+  }
+]
+

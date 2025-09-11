@@ -1,0 +1,29 @@
+<div class="w3-container w3-card w3-white w3-margin-bottom w3-animate-opacity">
+  <h2 class="w3-text-grey w3-padding-16">
+    <i class="fa fa-newspaper-o fa-fw w3-margin-right w3-xxlarge w3-text-deep-orange"></i>
+    Some News & Posts by Me
+  </h2>
+
+  {% for m in news %}
+    <h3 class="w3-text-grey w3-padding-16 w3-right-align w3-margin-right">{{ m.month }}</h3>
+    <div class="w3-container" style="margin-top:-30px;">
+      {% for it in m.items %}
+        <h4 class="w3-text-grey w3-padding-16 w3-left-align w3-margin-right">
+          <a class="lnk" target="_blank" href="{{ it.url }}">{{ it.title }}</a>
+        </h4>
+        <p style="margin-top:-10px;">
+          {{ it.blurb }}
+          {% if it.extra and it.extra.length %}
+            <br>
+            {% for pair in it.extra %}
+              {% set label = pair[0] %}{% set link = pair[1] %}
+              <a class="lnk" target="_blank" href="{{ link }}">{{ label }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          {% endif %}
+        </p>
+        <br>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+
