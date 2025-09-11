@@ -5,6 +5,7 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
   eleventyConfig.addPassthroughCopy({ "src/assets/audio": "assets/audio" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/docs": "assets/docs" });
 
   // date filter: {{ "now" | date("yyyy") }} or {{ someDate | date("yyyy-LL-dd") }}
   eleventyConfig.addFilter("date", (value, format = "yyyy") => {
