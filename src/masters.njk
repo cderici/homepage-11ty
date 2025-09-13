@@ -1,0 +1,171 @@
+---
+layout: base.njk
+title: Grandmasters of Computer Science
+permalink: "masters.html"
+---
+
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+  <div class="w3-row-padding">
+
+    <!-- Left Column -->
+    <div class="w3-quarter">
+      {# This page uses the same profile image as the content page #}
+      {% set profileImage = "/assets/img/content/profile41.jpg" %}
+      {% set profileImageMin = "/assets/img/content/profile41.jpg" %}
+      {% include "left-card.njk" %}
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-threequarter">
+      {% include "header.njk" %}
+
+      <div class="w3-container w3-card w3-white w3-margin-bottom w3-animate-opacity">
+        <h2 class="w3-text-grey w3-padding-16">
+          <i class="fa fa-trophy fa-fw w3-margin-right w3-xxlarge w3-text-deep-orange"></i>
+          Hall of Fame
+        </h2>
+
+        <p>
+          I dedicated this page to honor the grand-masters of our art. It is out of my individual
+          respect, a hall of fame containing our old grand-masters. Obviously, it's impossible to
+          list all of them here, so this is an unordered subset. I’m sure the rest will excuse my lack of experience.
+        </p>
+
+        <p>
+          If you see that I missed some other great logician/computer scientist that should be placed here,
+          please email me so we’ll honor them as well.
+        </p>
+
+        <p>So here are the masters:</p>
+
+        <!-- row 1 -->
+        <div class="w3-row-padding w3-margin-bottom" style="width:100%">
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/schonfinkel.jpeg" data-lightbox="masters" data-title="Moses Schönfinkel (1889 - 1942)">
+              <img src="/assets/img/people/schonfinkel.jpeg" class="master" />
+            </a>
+            <br/>Moses Schönfinkel <br/>(1889 - 1942)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="https://upload.wikimedia.org/wikipedia/commons/0/0b/Ada_Byron_daguerreotype_by_Antoine_Claudet_1843_or_1850.jpg"
+               data-lightbox="masters" data-title="Ada Lovelace (1815 - 1852)">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Ada_Byron_daguerreotype_by_Antoine_Claudet_1843_or_1850.jpg" class="master" />
+            </a>
+            <br/>Ada Lovelace <br/>(1815 - 1852)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/curry.jpeg" data-lightbox="masters" data-title="Haskell Curry (1900 - 1982)">
+              <img src="/assets/img/people/curry.jpeg" class="master" />
+            </a>
+            <br/>Haskell Curry <br/>(1900 - 1982)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="https://upload.wikimedia.org/wikipedia/commons/a/ad/Commodore_Grace_M._Hopper%2C_USN_%28covered%29.jpg"
+               data-lightbox="masters" data-title="Grace M. Hopper (1906 - 1992)">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Commodore_Grace_M._Hopper%2C_USN_%28covered%29.jpg" class="master" />
+            </a>
+            <br/>Grace M. Hopper <br/>(1906 - 1992)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/hilbert.jpeg" data-lightbox="masters" data-title="David Hilbert (1862 - 1943)">
+              <img src="/assets/img/people/hilbert.jpeg" class="master" />
+            </a>
+            <br/>David Hilbert <br/>(1862 - 1943)
+          </div>
+        </div>
+
+        <!-- row 2 -->
+        <div class="w3-row-padding w3-margin-bottom" style="width:100%">
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/church.jpeg" data-lightbox="masters" data-title="Alonzo Church (1903 - 1995)">
+              <img src="/assets/img/people/church.jpeg" class="master" />
+            </a>
+            <br/>Alonzo Church <br/>(1903 - 1995)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/turing.jpeg" data-lightbox="masters" data-title="Alan Turing (1912 - 1954)">
+              <img src="/assets/img/people/turing.jpeg" class="master" />
+            </a>
+            <br/>Alan Turing <br/>(1912 - 1954)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/kleene.jpeg" data-lightbox="masters" data-title="Stephen C. Kleene (1909 - 1994)">
+              <img src="/assets/img/people/kleene.jpeg" class="master" />
+            </a>
+            <br/>Stephen C. Kleene <br/>(1909 - 1994)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/landin.jpeg" data-lightbox="masters" data-title="Peter Landin (1930 - 2009)">
+              <img src="/assets/img/people/landin.jpeg" class="master" />
+            </a>
+            <br/>Peter Landin <br/>(1930 - 2009)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/godel.jpeg" data-lightbox="masters" data-title="Kurt Gödel (1906 - 1978)">
+              <img src="/assets/img/people/godel.jpeg" class="master" />
+            </a>
+            <br/>Kurt Gödel <br/>(1906 - 1978)
+          </div>
+        </div>
+
+        <!-- row 3 -->
+        <div class="w3-row-padding w3-margin-bottom" style="width:100%">
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/frege.jpeg" data-lightbox="masters" data-title="Gottlob Frege (1848 - 1925)">
+              <img src="/assets/img/people/frege.jpeg" class="master" />
+            </a>
+            <br/>Gottlob Frege <br/>(1848 - 1925)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/peano.jpeg" data-lightbox="masters" data-title="Giuseppe Peano (1858 - 1932)">
+              <img src="/assets/img/people/peano.jpeg" class="master" />
+            </a>
+            <br/>Giuseppe Peano <br/>(1858 - 1932)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/rosser.jpeg" data-lightbox="masters" data-title="J. Barkley Rosser (1907 - 1989)">
+              <img src="/assets/img/people/rosser.jpeg" class="master" />
+            </a>
+            <br/>J. Barkley Rosser <br/>(1907 - 1989)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/russell.jpeg" data-lightbox="masters" data-title="Bertrand Russell (1872 - 1970)">
+              <img src="/assets/img/people/russell.jpeg" class="master" />
+            </a>
+            <br/>Bertrand Russell <br/>(1872 - 1970)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/jmccarthy.jpeg" data-lightbox="masters" data-title="John McCarthy (1927 - 2011)">
+              <img src="/assets/img/people/jmccarthy.jpeg" class="master" />
+            </a>
+            <br/>John McCarthy <br/>(1927 - 2011)
+          </div>
+        </div>
+
+        <!-- row 4 -->
+        <div class="w3-row-padding" style="width:100%">
+          <div class="w3-col m5" style="width:20%">
+            <a href="/assets/img/people/johnCReynolds.jpeg" data-lightbox="masters" data-title="John C. Reynolds (1935 - 2013)">
+              <img src="/assets/img/people/johnCReynolds.jpeg" class="master" />
+            </a>
+            <br/>John C. Reynolds <br/>(1935 - 2013)
+          </div>
+          <div class="w3-col m5" style="width:20%">
+            <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Margaret_Hamilton_-_restoration.jpg/1200px-Margaret_Hamilton_-_restoration.jpg"
+               data-lightbox="masters" data-title="Margaret Hamilton (1936 - )">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Margaret_Hamilton_-_restoration.jpg/1200px-Margaret_Hamilton_-_restoration.jpg"
+                   alt="Margaret Hamilton - restoration.jpg" class="master" />
+            </a>
+            <br/>Margaret Hamilton <br/>(1936)
+          </div>
+        </div>
+
+        <hr>
+      </div>
+
+      <a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
+    </div><!-- /w3-threequarter -->
+
+  </div><!-- /w3-row-padding -->
+</div><!-- /w3-content -->
+
