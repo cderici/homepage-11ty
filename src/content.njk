@@ -25,24 +25,13 @@ permalink: "content.html"
           <ul class="w3-ul">
             <li><a href="http://twitch.tv/lambda_cd" class="lnk">Twitch affiliate channel</a> with 538 followers &amp; 19 subscribers.</li>
             <li><a href="http://discord.gg/eZVpkjhb" class="lnk">Discord</a> server with 224 people</li>
-            <li id="ytLi"><a href="https://www.youtube.com/channel/UCQUqjj5SfL9vfJxJ53ygN7w" class="lnk">YouTube</a> channel with many subs</li>
+			<li id="ytLi">
+  <a class="lnk" href="https://www.youtube.com/channel/UCQUqjj5SfL9vfJxJ53ygN7w">
+    YouTube
+  </a> channel with {{ yt.subscriberCount | default('…') }} subs,
+  {{ yt.videoCount }} videos, {{ yt.viewCount }} total views!
+</li>
           </ul>
-
-          <!-- YouTube stats fetch (kept from original) -->
-          <script>
-            const ytK = 'AIzaSyBhwBUD2fmybnQgx0Q7IUkPTWXmJH1jRKk';
-            const ytI = 'UCQUqjj5SfL9vfJxJ53ygN7w';
-            fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${ytI}&key=${ytK}`)
-              .then(r => r.json())
-              .then(data => {
-                const subNum = data.items[0].statistics.subscriberCount;
-                const vidCount = data.items[0].statistics.videoCount;
-                const viewCount = data.items[0].statistics.viewCount;
-                const prefix = document.getElementById('ytLi').innerHTML;
-                document.getElementById('ytLi').innerHTML = prefix.replace(' many ', ' ' + subNum + ' ')
-                  + ', ' + vidCount + ' videos with ' + viewCount + ' total views!';
-              });
-          </script>
 
           <p>Maybe not the greatest numbers out there, but I'm proud nonetheless :)</p>
           <p>The types of content I make include <b>teaching programming to beginners</b>, <b>StarCraft II</b> gameplay/analysis/improvement, and <b>live game development</b> for fun. Below you can find some highlights and links to my content (mostly in Turkish).</p>
