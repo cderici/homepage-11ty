@@ -1,8 +1,9 @@
 {% set imgSrc = profileImage or "/assets/img/mainProfile.jpg" %}
+{% set imgSrcMin = profileImageMin or "/assets/img/mainProfile.jpg" %}
 <div class="w3-white w3-text-grey w3-card-4">
   <div class="w3-display-container">
     <a href="{{ imgSrc }}" data-lightbox="profil">
-      <img src="{{ imgSrc }}" style="width:100%" alt="Avatar" />
+      <img src="{{ imgSrcMin }}" style="width:100%" alt="Avatar" />
     </a>
     <div class="w3-display-bottomleft w3-container w3-text-black">
       <h2 class="w3-text-white">{{ site.title }}</h2>
