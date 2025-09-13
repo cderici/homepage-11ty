@@ -8,7 +8,7 @@
     {% set isActive = (current == item.href) or (current == '/' and item.href == '/index.html') %}
 
     <a href="{{ item.href }}"
-       class="w3-bar-item w3-button w3-mobile {% if isActive %}w3-deep-orange{% endif %} w3-hover-deep-orange">
+       class="w3-bar-item w3-button w3-mobile w3-round-medium {% if isActive %}w3-deep-orange{% endif %} w3-hover-deep-orange">
       {{ item.label }}
     </a>
   {% endfor %}
