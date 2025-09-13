@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '0 3 * * *'  # runs daily at 03:00 UTC
+    - cron: '0 8 * * *'
 
 jobs:
   deploy:
