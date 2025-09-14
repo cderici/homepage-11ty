@@ -1,10 +1,14 @@
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
-  a {text-decoration: none; border-bottom: 1px solid #eb4034;}
+  a {border-bottom: 1px solid #eb4034;}
 
 .lnk {
     target: "_blank";
     border-bottom: 0px;
     color: #ff5722;
+}
+
+body {
+  background-color: #2A3A4B;
 }
 
 .back-to-top {
@@ -24,4 +28,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
     //object-fit: contain;
     width:50%;
     height:auto;
+}
+
+.caner-card {
+  background-color: #181a1b; /* dark background */
+  color: #E8E6E3;           /* light text */
+}
+
+.left-card {
+  background-color: #181a1b; /* dark background */
+  color: #E8E6E3;           /* light text */
 }
