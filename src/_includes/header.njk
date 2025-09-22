@@ -1,14 +1,14 @@
 {# src/_includes/header.njk #}
 <div class="w3-bar">
-  {# current route #}
   {% set current = page.url or '/' %}
 
   {% for item in site.nav %}
-    {# active when url matches; also treat "/" as /index.html #}
-    {% set isActive = (current == item.href) or (current == '/' and item.href == '/index.html') %}
+    {% set href = item.href | url %}
+    {% set isActive = (current == href) or (current == '/' and href == '/') %}
 
-    <a href="{{ item.href }}"
-       class="w3-bar-item w3-button w3-mobile w3-round-medium {% if isActive %}w3-deep-orange{% endif %} w3-hover-deep-orange">
+    <a href="{{ href }}"
+       class="w3-bar-item w3-button w3-mobile w3-round-medium w3-hover-deep-orange {% if isActive %}w3-deep-orange{% endif %}"
+       {% if isActive %}aria-current="page"{% endif %}>
       {{ item.label }}
     </a>
   {% endfor %}

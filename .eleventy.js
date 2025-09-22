@@ -14,6 +14,24 @@ export default function(eleventyConfig) {
     return DateTime.fromJSDate(jsDate).toFormat(format);
   });
 
+  // Pretty URLs everywhere by default
+  eleventyConfig.addGlobalData("eleventyComputed", {
+    permalink: (data) => {
+      // If a page already set its own permalink, keep it
+      if (typeof data.permalink !== "undefined") return data.permalink;
+
+      // Don't try to permalink non-pages (includes, data files) — Eleventy
+      // won’t output those anyway, so this is safe.
+
+      const slug = data.page.fileSlug;
+      // Home page
+      if (slug === "index") return "/";
+
+      // Everything else: /slug/
+      return `/${slug}/`;
+    },
+  });
+
   return {
     dir: { input: "src", output: "_site", includes: "_includes", data: "_data" },
     markdownTemplateEngine: "njk",
