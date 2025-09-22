@@ -35,3 +35,13 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
   background-color: #181a1b; /* dark background */
   color: #E8E6E3;           /* light text */
 }
+
+/* Reusable helper to remove link underlines/borders everywhere */
+.no-underline,
+.no-underline:visited,
+.no-underline:hover,
+.no-underline:focus,
+.no-underline:active {
+  text-decoration: none !important;
+  border-bottom: 0 !important; /* you were using border-bottom for links elsewhere */
+}
