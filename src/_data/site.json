@@ -16,7 +16,7 @@
   },
   "nav": [
     { "href": "/", "label": "Home" },
-    { "href": "/cv/", "label": "Professional" },
+    { "href": "/cv/", "label": "Resume/CV" },
     { "href": "/homelab/", "label": "HomeLab" },
     { "href": "/content/", "label": "Building a Community" },
     { "href": "/bike/", "label": "Bike" },
