@@ -113,3 +113,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
   .timeline-4 .sub{ grid-column:3; white-space:normal; }
 }
 
+.audio-right {
+  float: left;
+  width: 220px;           /* pick what fits */
+  margin: 0.5rem 1rem 1rem 0;  /* space from the text */
+}
+
+/* clearfix so the parent contains the float */
+.name-pronunciation::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
