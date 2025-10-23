@@ -126,3 +126,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
   clear: both;
 }
 
+.pub-card .pub-list { list-style: none; margin: 0; padding: 0; }
+.pub-card .pub-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+.pub-card .pub-list li:last-child { border-bottom: 0; }
+
+.pub-card .pub-title { font-weight: 500; }
+.pub-card .pub-info  { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+
+.pub-card .lnk { text-decoration: none; }
+.pub-card .lnk:hover { text-decoration: underline; }
