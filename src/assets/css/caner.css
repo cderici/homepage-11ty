@@ -5,7 +5,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
     target: "_blank";
     border-bottom: 0px;
     color: #ff5722;
+    text-decoration: none;
 }
+
+.lnk:hover { text-decoration: underline; }
 
 .back-to-top {
     position: fixed;
