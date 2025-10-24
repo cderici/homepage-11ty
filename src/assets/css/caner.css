@@ -141,3 +141,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
 
 .pub-card .lnk { text-decoration: none; }
 .pub-card .lnk:hover { text-decoration: underline; }
+
+
+/* Generic PDF viewer component */
+.pdf-viewer summary::-webkit-details-marker { display: none; }
+.pdf-viewer summary { cursor: pointer; }
+.pdf-viewer summary::after {
+  content: "▼";
+  margin-left: .6rem;
+  font-size: .9em;
+  opacity: .8;
+}
+.pdf-viewer[open] summary::after { content: "▲"; }
+
