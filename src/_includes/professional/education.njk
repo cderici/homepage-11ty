@@ -32,14 +32,16 @@
         My work focuses on fast run‑times of dynamic languages. In the first phase of my research, I investigated the effects of using Racket byte‑code compiler as a frontend for Pycket--studying optimizations like heavy inlining and lambda lifting and their effects on Pycket's run-time.
       </p>
       <p>
-        When Racket became more portable and <a href="https://blog.racket-lang.org/2018/01/racket-on-chez-status.html" class="lnk">started adopting Chez Scheme as its primary run time</a>, I pivoted to help that effort. We had a rudimentary Racket implementation, <a href="https://github.com/pycket/pycket" class="lnk">Pycket</a>, a meta‑tracing JIT compiler built on <a href="https://rpython.readthedocs.io/en/latest/" class="lnk">RPython framework</a>. It was designed to demonstrate that <a href="https://github.com/pycket/pycket/tree/master/papers" class="lnk">efficient sound gradual typing is possible</a>. I helped make Racket more portable and adopt Chez Scheme (see <a href="#pub-racket-on-chez" class="lnk">publication</a>). Mimicking Racket’s self‑hosting on Racket‑on‑Chez, I turned Pycket into a full implementation of Racket with a meta‑tracing JIT as its run‑time (see <a href="{{ site.links.dissertation }}" class="lnk">dissertation</a>).
+        When Racket became more portable and <a href="https://blog.racket-lang.org/2018/01/racket-on-chez-status.html" class="lnk">started adopting Chez Scheme as its primary run time</a>, I pivoted to help that effort. We had a rudimentary Racket implementation, <a href="https://github.com/pycket/pycket" class="lnk">Pycket</a>, a meta‑tracing JIT compiler built on <a href="https://rpython.readthedocs.io/en/latest/" class="lnk">RPython framework</a>. It was designed to demonstrate that <a href="https://github.com/pycket/pycket/tree/master/papers" class="lnk">efficient sound gradual typing is possible</a>. I helped make Racket more portable and adopt Chez Scheme (see <a href="#pub-racket-on-chez" class="lnk">publication</a>). Mimicking Racket’s self‑hosting on Racket‑on‑Chez, I turned Pycket into a full implementation of Racket with a meta‑tracing JIT as its run‑time.
       </p>
       <p>
-        <a href="https://pypy.org/" class="lnk">PyPy</a> showed that fast prototyping of efficient run‑times for dynamic languages is possible through meta‑interpretation. My work takes this a step further to show that fast prototyping of efficient run‑times for <strong>self‑hosting</strong> dynamic languages is achievable:contentReference[oaicite:2]{index=2}.
+        <a href="https://pypy.org/" class="lnk">PyPy</a> showed that fast prototyping of efficient run‑times for dynamic languages is possible through meta‑interpretation. My work takes this a step further to show that fast prototyping of efficient run‑times for <strong>self‑hosting</strong> dynamic languages is achievable.
       </p>
       <p>
-        Currently <a href="https://github.com/pycket/pycket" class="lnk">Pycket</a> runs as fast as before on prior benchmarks, but self‑hosting introduces giant dispatch loops—similar to issues Mozilla encountered with <a href="https://blog.mozilla.org/nnethercote/category/tracemonkey/" class="lnk">TraceMonkey</a>. You often lose more when slow than you gain when fast. My work suggests workarounds and shows that an efficient run‑time with a meta‑tracing JIT is still possible for fast prototyping of self‑hosting dynamic languages:contentReference[oaicite:3]{index=3}.
-      </p>
+        Currently <a href="https://github.com/pycket/pycket" class="lnk">Pycket</a> works as a runtime for full self-hosting Racket, including green threads via engines and full rktio via ffi--essentially no different than Racket on Chez.     </p>
+		<p>
+		My <a href="{{ site.links.dissertation }}" class="lnk">dissertation</a> contains all the tecnical details on how this is achieved for the first time ever, along with a full performance investigation of self-hosting a production-grade language on a tracing JIT compiler.
+		</p>
     </div>
   </details>
 
