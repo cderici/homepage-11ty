@@ -13,7 +13,9 @@
   },
   "links": {
     "website": "https://dericilab.live",
-    "dissertation": "https://github.com/cderici/dissertation/releases/download/latest-pdf/thesis.pdf"
+    "dissertation": "https://github.com/cderici/dissertation/releases/download/latest-pdf/thesis.pdf",
+    "project_lang": "https://github.com/cderici/around-the-world-in-26-languages",
+    "project_rax": "https://github.com/cderici/rax"
   },
   "nav": [
     { "href": "/", "label": "Home" },
