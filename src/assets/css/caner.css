@@ -51,7 +51,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
 
 .timeline-wrap{
   --indent: 1.5rem;
-  width: 50%;
+  width: 100%;
   margin: 0 0 0 var(--indent);
 }
 
@@ -99,21 +99,22 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
 }
 
 .timeline-4{
-  grid-template-columns: var(--gutter) 12ch 9ch minmax(20ch, 1.3fr) minmax(22ch, 1fr);
+  grid-template-columns: var(--gutter) 12ch 8ch max-content minmax(0, 1fr);
   column-gap: 1.25rem;
 }
 
 .timeline-4 dt{ grid-column:2; }
 .timeline-4 .kind{ grid-column:3; white-space:nowrap; }
 .timeline-4 .main{ grid-column:4; white-space:nowrap; }
-.timeline-4 .sub{ grid-column:5; white-space:nowrap; }
+.timeline-4 .sub{ grid-column:5; white-space:nowrap; min-width:0; position:relative; left:-1rem; }
+.timeline-4 .sub.wrap{ white-space:normal; }
 
 @media (max-width: 720px){
   .timeline-wrap{ width:100%; margin-left:1rem; }
   .timeline-4{ grid-template-columns: var(--gutter) 10ch 1fr; }
   .timeline-4 .kind{ grid-column:3; opacity:.9; }
   .timeline-4 .main,
-  .timeline-4 .sub{ grid-column:3; white-space:normal; }
+  .timeline-4 .sub{ grid-column:3; white-space:normal; margin-left:0; }
 }
 
 .audio-right {
@@ -153,4 +154,3 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto Condensed", sans-serif}
   opacity: .8;
 }
 .pdf-viewer[open] summary::after { content: "▲"; }
-
