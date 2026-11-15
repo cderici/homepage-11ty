@@ -1,5 +1,37 @@
 // .eleventy.js (ESM)
+import { readFileSync } from "node:fs";
 import { DateTime } from "luxon";
+
+// Inline SVG icons from src/_includes/icons (see the README there).
+const ICON_DIR = new URL("./src/_includes/icons/", import.meta.url);
+const iconCache = new Map();
+const escapeAttr = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+
+function icon(name, label) {
+  let svg = iconCache.get(name);
+  if (!svg) {
+    let raw;
+    try {
+      raw = readFileSync(new URL(`${name}.svg`, ICON_DIR), "utf8");
+    } catch {
+      throw new Error(`icon: no such icon "${name}" in src/_includes/icons`);
+    }
+    svg = raw
+      .replace(/<!--[\s\S]*?-->/g, "")
+      .replace(/<title>[\s\S]*?<\/title>/g, "")
+      .replace(/\s+/g, " ")
+      .replace(/>\s+</g, "><")
+      .replace(/\s+(\/?>)/g, "$1")
+      // drop sizing/class from the root <svg> only; inner shapes keep theirs
+      .replace(/<svg\b[^>]*>/, (tag) => tag.replace(/\s(class|width|height|role)="[^"]*"/g, ""))
+      .trim();
+    // filled glyphs (no stroke) take the text colour too
+    if (!/\sstroke="/.test(svg)) svg = svg.replace("<svg", '<svg fill="currentColor"');
+    iconCache.set(name, svg);
+  }
+  const a11y = label ? `role="img" aria-label="${escapeAttr(label)}"` : `aria-hidden="true"`;
+  return svg.replace("<svg", `<svg class="icon icon-${name}" ${a11y} focusable="false"`);
+}
 
 export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
@@ -8,6 +40,8 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/docs": "assets/docs" });
   eleventyConfig.addPassthroughCopy({ "src/assets/favicon": "/" });
   eleventyConfig.addPassthroughCopy("src/CNAME");
+
+  eleventyConfig.addShortcode("icon", icon);
 
   // date filter: {{ "now" | date("yyyy") }} or {{ someDate | date("yyyy-LL-dd") }}
   eleventyConfig.addFilter("date", (value, format = "yyyy") => {

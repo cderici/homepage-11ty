@@ -163,6 +163,21 @@
 }
 
 /* ---------------------------------------------------------------------------
+   Components
+   --------------------------------------------------------------------------- */
+@layer components {
+  /* inline SVG icons from the `icon` shortcode */
+  .icon {
+    display: inline-block;
+    width: 1.125em;
+    height: 1.125em;
+    flex: none;
+    vertical-align: -.2em;
+  }
+  .icon-x { transform: scale(.8); }  /* filled glyph; balance it against the outline set */
+}
+
+/* ---------------------------------------------------------------------------
    Utilities
    --------------------------------------------------------------------------- */
 @layer utilities {
