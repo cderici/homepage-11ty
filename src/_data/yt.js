@@ -1,5 +1,5 @@
-import 'dotenv/config';
-import fetch from 'node-fetch';
+// Node 24 has fetch and .env loading built in; no extra packages needed.
+try { process.loadEnvFile(); } catch { /* no .env file — fine */ }
 
 const channelId = 'UCQUqjj5SfL9vfJxJ53ygN7w';   // your channel
 
