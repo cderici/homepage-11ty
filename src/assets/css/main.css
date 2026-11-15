@@ -53,3 +53,143 @@
   src: url("/assets/fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
+
+@layer base, components, utilities;
+
+/* ---------------------------------------------------------------------------
+   Design tokens — settled in design/prototype ("dusk" base, "plasma" accent).
+   --------------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+
+  /* surfaces */
+  --bg:        #0d1422;
+  --surface:   #151e30;
+  --surface-2: #1b2539;
+  --line:      #2b3954;
+
+  /* text */
+  --text:  #e8ecf3;
+  --muted: #95a0b6;
+  --faint: #66728c;
+
+  /* accent: orange marks, cyan light */
+  --accent: #ff7a33;   /* labels, icons, bullets */
+  --link:   #ffa06b;
+  --glow:   #55cfe8;   /* travelling light, hover glow */
+
+  /* backdrop glows */
+  --tint-a: #ff6a1a;   /* warm, top-left */
+  --tint-b: #55cfe8;   /* cool, right */
+  --tint-c: #2f63b8;   /* broad blue, top and bottom */
+  --halo:   1.7;       /* overall backdrop glow strength */
+
+  /* type */
+  --f-head: "Inter", system-ui, sans-serif;
+  --f-body: "Geist", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* shape */
+  --r:    14px;
+  --r-sm: 8px;
+
+  /* motion — interactions stay snappy; only ambient effects are slow */
+  --t-fast: .14s;
+  --t-med:  .2s;
+  --ease:   cubic-bezier(.2, .8, .2, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(1000px 700px at max(10%, calc(50% - 600px)) -140px,
+        color-mix(in oklab, var(--tint-a) calc(var(--halo) * 13%), transparent), transparent 70%),
+      radial-gradient(900px 650px at min(92%, calc(50% + 680px)) 30%,
+        color-mix(in oklab, var(--tint-b) calc(var(--halo) * 6%), transparent), transparent 70%),
+      radial-gradient(1600px 900px at 50% 115%,
+        color-mix(in oklab, var(--tint-c) calc(var(--halo) * 14%), transparent), transparent 70%),
+      radial-gradient(1400px 600px at 60% -20%,
+        color-mix(in oklab, var(--tint-c) calc(var(--halo) * 9%), transparent), transparent 70%),
+      var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: var(--f-body);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    margin: 0;
+    font-family: var(--f-head);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  p { margin: 0 0 1em; }
+  img, svg, video { display: block; max-width: 100%; }
+  img { height: auto; }
+
+  /* links: underline slides in on hover */
+  a {
+    color: var(--link);
+    text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size var(--t-med) var(--ease);
+  }
+  a:hover { background-size: 100% 1px; }
+
+  :focus-visible {
+    outline: 2px solid var(--glow);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection { background: color-mix(in oklab, var(--accent) 35%, transparent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+   --------------------------------------------------------------------------- */
+@layer utilities {
+  /* small monospace section label with a fading rule, e.g. "ABOUT ———" */
+  .label {
+    display: flex;
+    align-items: center;
+    gap: .6em;
+    margin-bottom: 1.1rem;
+    font-family: var(--f-mono);
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, color-mix(in oklab, var(--accent) 45%, transparent), transparent);
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
