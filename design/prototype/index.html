@@ -25,13 +25,18 @@
 /* Accent: Plasma (fixed). --accent: labels, icons, bullets · --link · --glow: light & hovers · --tint-*: background depth */
 :root { --accent:#ff7a33; --link:#ffa06b; --glow:#55cfe8; --tint-a:#ff6a1a; --tint-b:#55cfe8; }
 
-/* Tones — the remaining choice. "deep"/"dusk"/"slate": cards lighter than the background.
-   "harbor"/"mist": like the old site — lighter backdrop, darker cards. */
-[data-tone="deep"]   { --bg:#080c15; --surface:#0f1522; --surface-2:#141c2c; --line:#222e46; }
-[data-tone="dusk"]   { --bg:#0d1422; --surface:#151e30; --surface-2:#1b2539; --line:#2b3954; --faint:#66728c; }
-[data-tone="slate"]  { --bg:#131c2d; --surface:#1b2539; --surface-2:#222d43; --line:#34425f; --muted:#a1abc0; --faint:#6e7a94; }
-[data-tone="harbor"] { --bg:#1a2639; --surface:#111a29; --surface-2:#172133; --line:#2b3a55; --faint:#66728c; }
-[data-tone="mist"]   { --bg:#24324a; --surface:#152033; --surface-2:#1b273c; --line:#33455f; --muted:#a1abc0; --faint:#6e7a94; }
+/* Blues — background family. "dusk" is the current pick; others lean further toward an SC2-like blue.
+   --tint-c: the tone's own blue, used for the large backdrop glows. */
+[data-tone="dusk"]   { --bg:#0d1422; --surface:#151e30; --surface-2:#1b2539; --line:#2b3954; --faint:#66728c; --tint-c:#2f63b8; }
+[data-tone="nexus"]  { --bg:#091631; --surface:#0f1f40; --surface-2:#15284d; --line:#24396a; --faint:#61719a; --muted:#9aa8c6; --tint-c:#1f6fff; }
+[data-tone="warp"]   { --bg:#08192b; --surface:#0e2337; --surface-2:#142b43; --line:#22415e; --faint:#5f7690; --muted:#97a9bd; --tint-c:#14a3e0; }
+[data-tone="khala"]  { --bg:#0c1333; --surface:#141b43; --surface-2:#1a234f; --line:#2b3673; --faint:#6670a0; --muted:#a0a8cc; --tint-c:#4b5dff; }
+[data-tone="abyss"]  { --bg:#050d22; --surface:#0b1731; --surface-2:#101f3c; --line:#1d3159; --faint:#5a6a8e; --tint-c:#2b6cff; }
+
+/* Backdrop glow strength */
+[data-halo="soft"]   { --halo:1; }
+[data-halo="medium"] { --halo:1.7; }
+[data-halo="strong"] { --halo:2.6; }
 
 /* ============ Base ============ */
 *,*::before,*::after { box-sizing:border-box; }
@@ -39,8 +44,10 @@ html { color-scheme:dark; }
 body {
   margin:0; min-height:100vh;
   background:
-    radial-gradient(1000px 700px at max(10%, calc(50% - 600px)) -140px, color-mix(in oklab, var(--tint-a) 13%, transparent), transparent 70%),
-    radial-gradient(900px 650px at min(92%, calc(50% + 680px)) 30%, color-mix(in oklab, var(--tint-b) 6%, transparent), transparent 70%),
+    radial-gradient(1000px 700px at max(10%, calc(50% - 600px)) -140px, color-mix(in oklab, var(--tint-a) calc(var(--halo) * 13%), transparent), transparent 70%),
+    radial-gradient(900px 650px at min(92%, calc(50% + 680px)) 30%, color-mix(in oklab, var(--tint-b) calc(var(--halo) * 6%), transparent), transparent 70%),
+    radial-gradient(1600px 900px at 50% 115%, color-mix(in oklab, var(--tint-c) calc(var(--halo) * 14%), transparent), transparent 70%),
+    radial-gradient(1400px 600px at 60% -20%, color-mix(in oklab, var(--tint-c) calc(var(--halo) * 9%), transparent), transparent 70%),
     var(--bg);
   background-attachment: fixed;
   color:var(--text); font-family:var(--f-body);
@@ -232,7 +239,7 @@ dialog.lb img { display:block; max-width:92vw; max-height:92vh; border-radius:10
 .ctl.min > :not(b) { display:none; }
 </style>
 </head>
-<body data-tone="dusk">
+<body data-tone="dusk" data-halo="medium">
 
 <div class="page">
   <aside class="rise">
@@ -295,7 +302,7 @@ dialog.lb img { display:block; max-width:92vw; max-height:92vh; border-radius:10
           </ul>
           <div class="pron">
             <h3><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/volume-2.svg)"></span>How do you say your name?</h3>
-            <audio controls preload="none" src="../src/assets/audio/name-pronunciation.opus"></audio>
+            <audio controls preload="none" src="../../src/assets/audio/name-pronunciation.opus"></audio>
             <p>I'm a US national, and this is by far the most common question I get around here. I'm not a native English speaker, but my wife is, so I know how tricky it can be to pronounce. No worries tough, feel free to say it however's easiest for you. Thanks for asking!</p>
           </div>
           <p style="margin-top:1.4rem;margin-bottom:0">And thanks for checking out my homepage!</p>
@@ -330,12 +337,16 @@ dialog.lb img { display:block; max-width:92vw; max-height:92vh; border-radius:10
 
 <div class="ctl" id="ctl">
   <b title="click to collapse">Mockup controls ▾</b>
-  <label>Tone <select data-k="tone">
-    <option value="deep">Deep · darkest</option>
+  <label>Blue <select data-k="tone">
     <option value="dusk" selected>Dusk (chosen)</option>
-    <option value="slate">Slate · two steps lighter</option>
-    <option value="harbor">Harbor · light backdrop, dark cards</option>
-    <option value="mist">Mist · lighter backdrop, dark cards</option></select></label>
+    <option value="nexus">Nexus · saturated SC2 blue</option>
+    <option value="warp">Warp · cyan-leaning blue</option>
+    <option value="khala">Khala · royal / indigo</option>
+    <option value="abyss">Abyss · darkest, deep blue</option></select></label>
+  <label>Glow <select data-k="halo">
+    <option value="soft">Soft</option>
+    <option value="medium" selected>Medium (chosen)</option>
+    <option value="strong">Strong</option></select></label>
   <small id="vp"></small>
 </div>
 
@@ -349,7 +360,7 @@ for (const s of document.querySelectorAll(".ctl select")) {
   b.dataset[k] = s.value;
   s.addEventListener("change", () => {
     b.dataset[k] = s.value;
-    location.hash = new URLSearchParams({ [k]: s.value }).toString();
+    location.hash = new URLSearchParams([...document.querySelectorAll(".ctl select")].map(x => [x.dataset.k, x.value])).toString();
   });
 }
 const vp = () => document.getElementById("vp").textContent = `viewport ${innerWidth}×${innerHeight} · dpr ${devicePixelRatio}`;
