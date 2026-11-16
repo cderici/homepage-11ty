@@ -273,6 +273,8 @@
   main > :nth-child(4n + 3) .frame { --phase: -5s; }
   main > :nth-child(4n + 4) .frame { --phase: -13s; }
 
+  .frame.idle { animation-play-state: paused; }  /* set by main.js when off screen */
+
   /* a faint accent line along the top edge of content cards */
   .card .panel { position: relative; }
   .card .panel::before {
@@ -429,6 +431,79 @@
       scrollbar-width: none;
     }
     .site-nav li { flex: none; }
+  }
+
+  .photo[aria-busy] { cursor: progress; }
+
+  /* lightbox: native <dialog>, fading and scaling in and out with no JS animation */
+  dialog.lightbox {
+    max-width: 92vw;
+    max-height: 92vh;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-out;
+    opacity: 0;
+    transform: scale(.94);
+    transition:
+      opacity .2s var(--ease),
+      transform .22s var(--ease),
+      overlay .22s allow-discrete,
+      display .22s allow-discrete;
+  }
+  dialog.lightbox[open] { opacity: 1; transform: none; }
+  dialog.lightbox::backdrop {
+    background: rgb(4 6 10 / 0);
+    backdrop-filter: blur(0);
+    transition:
+      background-color .2s,
+      backdrop-filter .2s,
+      overlay .22s allow-discrete,
+      display .22s allow-discrete;
+  }
+  dialog.lightbox[open]::backdrop { background: rgb(4 6 10 / .85); backdrop-filter: blur(4px); }
+  @starting-style {
+    dialog.lightbox[open] { opacity: 0; transform: scale(.94); }
+    dialog.lightbox[open]::backdrop { background: rgb(4 6 10 / 0); backdrop-filter: blur(0); }
+  }
+  dialog.lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 10px; }
+
+  /* back to top */
+  .to-top {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    width: 40px; height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: color-mix(in oklab, var(--surface) 85%, transparent);
+    backdrop-filter: blur(6px);
+    color: var(--muted);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition:
+      opacity var(--t-med) var(--ease),
+      transform var(--t-med) var(--ease),
+      visibility 0s var(--t-med),
+      color var(--t-fast),
+      border-color var(--t-fast),
+      box-shadow var(--t-med);
+  }
+  .to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+  .to-top:hover {
+    color: var(--accent);
+    border-color: color-mix(in oklab, var(--accent) 40%, var(--line));
+    box-shadow: 0 0 18px -6px var(--glow);
   }
 
   /* home: intro */
