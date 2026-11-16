@@ -310,6 +310,73 @@
     box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent), 0 0 18px -6px var(--glow);
   }
 
+  /* nav: on hover, light rises inside the button from its bottom edge,
+     and an accent hairline grows out from the centre of that edge */
+  .site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-nav a {
+    position: relative;
+    isolation: isolate;
+    display: block;
+    overflow: hidden;
+    padding: 7px 13px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    background: var(--surface);
+    color: var(--muted);
+    font-size: .9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color var(--t-fast), border-color var(--t-med);
+  }
+  .site-nav a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(70% 70% at 50% 120%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 70%),
+      radial-gradient(90% 120% at 50% 130%, color-mix(in oklab, var(--glow) 20%, transparent), transparent 70%);
+    opacity: 0;
+    transition: opacity var(--t-med) var(--ease);
+  }
+  .site-nav a::after {
+    content: "";
+    position: absolute;
+    left: 14%; right: 14%; bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent) 30%,
+      color-mix(in oklab, var(--accent) 60%, #fff) 50%, var(--accent) 70%, transparent);
+    box-shadow: 0 0 6px 0 var(--accent), 0 0 14px 1px color-mix(in oklab, var(--accent) 45%, transparent);
+    transform: scaleX(0);
+    transition: transform var(--t-med) var(--ease);
+  }
+  .site-nav a:hover { color: var(--text); border-color: color-mix(in oklab, var(--accent) 30%, var(--line)); }
+  .site-nav a:hover::before { opacity: 1; }
+  .site-nav a:hover::after,
+  .site-nav a[aria-current]::after { transform: scaleX(1); }
+  /* current page: the same light, a little quieter */
+  .site-nav a[aria-current] { color: var(--text); border-color: color-mix(in oklab, var(--accent) 35%, var(--line)); }
+  .site-nav a[aria-current]::before { opacity: .7; }
+  .site-nav a[aria-current]:hover::before { opacity: .85; }
+
+  /* narrow screens: one swipeable row instead of wrapping */
+  @media (max-width: 880px) {
+    .site-nav ul {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .site-nav li { flex: none; }
+  }
+
   /* home: intro */
   .intro .panel > * { max-width: 92ch; }
   .intro p { color: color-mix(in oklab, var(--text) 86%, var(--muted)); }
