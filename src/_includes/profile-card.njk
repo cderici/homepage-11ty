@@ -1,0 +1,30 @@
+{# Profile card. Pages pick their own photo with `profileImage` (full size, opens
+   in the lightbox) and `profileImageMin` (shown in the card) in front matter. #}
+{% set imgFull = profileImage or "/assets/img/mainProfile.jpg" %}
+{% set imgCard = profileImageMin or imgFull %}
+<div class="frame profile">
+  <div class="panel">
+    <a class="photo" href="{{ imgFull }}" data-lightbox>
+      <img src="{{ imgCard }}" alt="Photo of {{ site.title }}">
+      <span class="name">{{ site.title }}</span>
+    </a>
+
+    <ul class="facts">
+      <li class="role">{% icon "briefcase" %}{{ site.role }}</li>
+      <li class="role">{% icon "building-2" %}{{ site.company }}</li>
+      <li>{% icon "map-pin" %}{{ site.location }}</li>
+      <li>{% icon "github" %}<a href="https://github.com/{{ site.social.github }}" rel="me">{{ site.social.github }}</a></li>
+      <li>{% icon "link" %}<a href="{{ site.links.website }}">{{ site.links.website | replace("https://", "") }}</a></li>
+      <li>{% icon "mail" %}<a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+    </ul>
+
+    <ul class="socials">
+      <li><a href="https://www.linkedin.com/in/{{ site.social.linkedin }}/" rel="me">{% icon "linkedin", "LinkedIn" %}</a></li>
+      <li><a href="https://www.instagram.com/{{ site.social.instagram }}/" rel="me">{% icon "instagram", "Instagram" %}</a></li>
+      <li><a href="https://www.facebook.com/{{ site.social.facebook }}" rel="me">{% icon "facebook", "Facebook" %}</a></li>
+      <li><a href="https://x.com/{{ site.social.x }}" rel="me">{% icon "x", "X" %}</a></li>
+      <li><a href="https://www.youtube.com/channel/{{ site.social.youtube }}" rel="me">{% icon "youtube", "YouTube" %}</a></li>
+      <li><a href="https://www.twitch.tv/{{ site.social.twitch }}" rel="me">{% icon "twitch", "Twitch" %}</a></li>
+    </ul>
+  </div>
+</div>

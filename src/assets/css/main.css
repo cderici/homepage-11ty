@@ -245,6 +245,71 @@
     .card > .panel { padding: 22px 20px; }
   }
 
+  /* profile card */
+  .profile > .panel { overflow: hidden; }
+  .photo {
+    position: relative;
+    display: block;
+    overflow: hidden;   /* keeps the hover zoom inside the fade */
+    background: none;
+    cursor: zoom-in;
+  }
+  .photo img { width: 100%; transition: transform .35s var(--ease); }
+  .photo:hover img { transform: scale(1.025); }
+  .photo::after {
+    content: "";
+    position: absolute;
+    inset: 45% 0 0;
+    background: linear-gradient(transparent, color-mix(in oklab, var(--surface) 70%, transparent) 65%, var(--surface));
+  }
+  .photo .name {
+    position: absolute;
+    left: 20px; right: 20px; bottom: 14px;
+    z-index: 1;
+    font-family: var(--f-head);
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #fff;
+  }
+
+  .facts {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 18px 20px 6px;
+    list-style: none;
+    font-size: .93rem;
+  }
+  .facts li { display: flex; align-items: center; gap: 11px; min-width: 0; }
+  .facts a { color: var(--text); overflow-wrap: anywhere; }
+  .facts .icon { color: var(--accent); }
+  .facts .role { font-weight: 500; }
+
+  .socials {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 10px 22px 0;
+    padding: 12px 0 20px;
+    border-top: 1px solid var(--line);
+    list-style: none;
+  }
+  .socials a {
+    display: grid;
+    place-items: center;
+    width: 36px; height: 36px;
+    border-radius: var(--r-sm);
+    background: none;
+    color: var(--muted);
+    transition: color var(--t-fast), background-color var(--t-fast), box-shadow var(--t-med);
+  }
+  .socials a:hover {
+    color: var(--accent);
+    background: var(--surface-2);
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent), 0 0 18px -6px var(--glow);
+  }
+
   /* home: intro */
   .intro .panel > * { max-width: 92ch; }
   .intro p { color: color-mix(in oklab, var(--text) 86%, var(--muted)); }
