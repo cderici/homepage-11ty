@@ -43,6 +43,12 @@ export default function(eleventyConfig) {
 
   eleventyConfig.addShortcode("icon", icon);
 
+  // A content card: {% card "About", "intro" %}…{% endcard %}
+  eleventyConfig.addPairedShortcode("card", (content, label, cls = "") => {
+    const heading = label ? `<h2 class="label">${label}</h2>` : "";
+    return `<section class="frame card ${cls}"><div class="panel">${heading}${content}</div></section>`;
+  });
+
   // date filter: {{ "now" | date("yyyy") }} or {{ someDate | date("yyyy-LL-dd") }}
   eleventyConfig.addFilter("date", (value, format = "yyyy") => {
     const d = value === "now" ? new Date() : value;

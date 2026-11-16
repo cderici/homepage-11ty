@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title and title != "Home" %}{{ title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="theme-color" content="#0d1422">
+
+  {# the two faces every page uses above the fold; the rest load on demand #}
+  <link rel="preload" href="/assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="/favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <div class="page">
+    <aside class="sidebar">
+      {% include "left-card.njk" %}
+    </aside>
+
+    <div class="column">
+      {% include "header.njk" %}
+      <main id="content">
+        {{ content | safe }}
+      </main>
+    </div>
+
+    <footer class="site-footer">© {{ "now" | date("yyyy") }} {{ site.title }}</footer>
+  </div>
+</body>
+</html>
