@@ -56,6 +56,10 @@
 
 @layer base, layout, components, utilities;
 
+@property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes orbit { to { --a: 360deg; } }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+
 /* ---------------------------------------------------------------------------
    Design tokens — settled in design/prototype ("dusk" base, "plasma" accent).
    --------------------------------------------------------------------------- */
@@ -227,22 +231,72 @@
   }
   .icon-x { transform: scale(.8); }  /* filled glyph; balance it against the outline set */
 
-  /* card: a 1px frame around a panel (the frame's light comes later) */
+  /* frame: a 1px border around a panel, with a slow light travelling round it
+     (two arcs of a conic gradient, rotated by animating --a) and a soft
+     blurred bloom of the same light behind the panel */
   .frame {
+    --glow-k: .6;    /* light strength */
+    --orbit: 16s;    /* one lap */
+    --bloom: .28;
     position: relative;
     isolation: isolate;
     padding: 1px;
     border-radius: var(--r);
-    background: var(--line);
+    background:
+      conic-gradient(from var(--a),
+        transparent 0deg,
+        color-mix(in oklab, var(--glow) calc(var(--glow-k) * 100%), transparent) 30deg,
+        transparent 75deg,
+        transparent 180deg,
+        color-mix(in oklab, var(--glow) calc(var(--glow-k) * 45%), transparent) 206deg,
+        transparent 240deg),
+      linear-gradient(var(--line), var(--line));
+    animation: orbit var(--orbit) linear infinite;
+    animation-delay: var(--phase, 0s);
   }
+  .frame::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: inherit;
+    background: inherit;
+    animation: inherit;
+    filter: blur(8px);
+    opacity: var(--bloom);
+    pointer-events: none;
+  }
+  /* start each frame's light at a different point so they don't move in step */
+  .profile { --phase: -3s; }
+  main > :nth-child(4n + 1) .frame { --phase: -1s; }
+  main > :nth-child(4n + 2) .frame { --phase: -9s; }
+  main > :nth-child(4n + 3) .frame { --phase: -5s; }
+  main > :nth-child(4n + 4) .frame { --phase: -13s; }
+
+  /* a faint accent line along the top edge of content cards */
+  .card .panel { position: relative; }
+  .card .panel::before {
+    content: "";
+    position: absolute;
+    left: 24px; right: 24px; top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent) 55%, transparent), transparent);
+  }
+
+  /* entrance: card, nav, then content, each rising in quickly */
+  .sidebar, .site-nav, main > * { animation: rise .35s var(--ease) both; }
+  .site-nav { animation-delay: .04s; }
+  main > :nth-child(1) { animation-delay: .08s; }
+  main > :nth-child(2) { animation-delay: .12s; }
+  main > :nth-child(n + 3) { animation-delay: .16s; }
   .frame > .panel {
     height: 100%;
     border-radius: calc(var(--r) - 1px);
     background: var(--surface);
   }
-  .card > .panel { padding: 30px clamp(24px, 3vw, 44px); }
+  .card .panel { padding: 30px clamp(24px, 3vw, 44px); }
   @media (max-width: 880px) {
-    .card > .panel { padding: 22px 20px; }
+    .card .panel { padding: 22px 20px; }
   }
 
   /* profile card */
