@@ -1,0 +1,54 @@
+{# Design controls from the prototype, kept for comparing on different screens.
+   Only rendered by the dev server (npm run dev); never in a deploy build. #}
+<style>
+  [data-tone="nexus"] { --bg:#091631; --surface:#0f1f40; --surface-2:#15284d; --line:#24396a; --faint:#61719a; --muted:#9aa8c6; --tint-c:#1f6fff; }
+  [data-tone="warp"]  { --bg:#08192b; --surface:#0e2337; --surface-2:#142b43; --line:#22415e; --faint:#5f7690; --muted:#97a9bd; --tint-c:#14a3e0; }
+  [data-tone="khala"] { --bg:#0c1333; --surface:#141b43; --surface-2:#1a234f; --line:#2b3673; --faint:#6670a0; --muted:#a0a8cc; --tint-c:#4b5dff; }
+  [data-tone="abyss"] { --bg:#050d22; --surface:#0b1731; --surface-2:#101f3c; --line:#1d3159; --faint:#5a6a8e; --tint-c:#2b6cff; }
+  [data-halo="soft"]   { --halo:1; }
+  [data-halo="strong"] { --halo:2.6; }
+
+  .dev-ctl { position:fixed; right:16px; bottom:16px; z-index:20; display:grid; gap:8px; min-width:220px;
+    padding:12px 14px; border:1px solid #333; border-radius:10px; background:rgb(12 12 14 / .92);
+    box-shadow:0 10px 40px rgb(0 0 0 / .5); font:13px/1.4 system-ui, sans-serif; color:#ddd; }
+  .dev-ctl b { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#999; cursor:pointer; user-select:none; }
+  .dev-ctl small { font-size:11px; color:#888; }
+  .dev-ctl label { display:grid; grid-template-columns:44px 1fr; align-items:center; gap:8px; }
+  .dev-ctl select { padding:3px 6px; border:1px solid #3a3a3a; border-radius:6px; background:#1c1c1f; color:#eee; font:inherit; }
+  .dev-ctl.min > :not(b) { display:none; }
+</style>
+<div class="dev-ctl" id="dev-ctl">
+  <b title="click to collapse">Dev controls ▾</b>
+  <label>Blue <select data-k="tone">
+    <option value="dusk">Dusk (chosen)</option>
+    <option value="nexus">Nexus · saturated SC2 blue</option>
+    <option value="warp">Warp · cyan-leaning blue</option>
+    <option value="khala">Khala · royal / indigo</option>
+    <option value="abyss">Abyss · darkest, deep blue</option>
+  </select></label>
+  <label>Glow <select data-k="halo">
+    <option value="soft">Soft</option>
+    <option value="medium">Medium (chosen)</option>
+    <option value="strong">Strong</option>
+  </select></label>
+  <small id="dev-vp"></small>
+</div>
+<script>
+  // choices persist across pages (localStorage, dev only)
+  {
+    const box = document.getElementById("dev-ctl");
+    const store = { get: (k) => { try { return localStorage.getItem("dev:" + k); } catch { return null; } },
+                    set: (k, v) => { try { localStorage.setItem("dev:" + k, v); } catch {} } };
+    for (const s of box.querySelectorAll("select")) {
+      const k = s.dataset.k, saved = store.get(k);
+      if ([...s.options].some((o) => o.value === saved)) s.value = saved;
+      else s.value = s.options[k === "halo" ? 1 : 0].value;
+      document.body.dataset[k] = s.value;
+      s.addEventListener("change", () => { document.body.dataset[k] = s.value; store.set(k, s.value); });
+    }
+    if (store.get("min") === "1") box.classList.add("min");
+    box.querySelector("b").addEventListener("click", () => store.set("min", box.classList.toggle("min") ? "1" : "0"));
+    const vp = () => { document.getElementById("dev-vp").textContent = `viewport ${innerWidth}×${innerHeight} · dpr ${devicePixelRatio}`; };
+    vp(); addEventListener("resize", vp);
+  }
+</script>

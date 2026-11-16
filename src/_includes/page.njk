@@ -38,5 +38,7 @@
 
   <button class="to-top" type="button" aria-label="Back to top">{% icon "arrow-up" %}</button>
   <dialog class="lightbox" aria-label="Photo"><img alt=""></dialog>
+
+  {% if eleventy.env.runMode == "serve" %}{% include "dev-controls.njk" %}{% endif %}
 </body>
 </html>
