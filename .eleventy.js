@@ -49,6 +49,14 @@ export default function(eleventyConfig) {
     return `<section class="card ${cls}"><div class="frame"><div class="panel">${heading}${content}</div></div></section>`;
   });
 
+  // A 0–5 star rating: {% stars 4 %}
+  eleventyConfig.addShortcode("stars", (n) => {
+    const filled = Math.max(0, Math.min(5, Number(n)));
+    const star = icon("star");
+    const on = star.replace('class="icon icon-star"', 'class="icon icon-star on"');
+    return `<span class="stars" role="img" aria-label="${filled} out of 5">${on.repeat(filled)}${star.repeat(5 - filled)}</span>`;
+  });
+
   // A collapsible entry (CV items): {% entry "Title", "2015 – 2021", "optional-id" %}…{% endentry %}
   eleventyConfig.addPairedShortcode("entry", (content, title, when = "", id = "") => {
     const idAttr = id ? ` id="${id}"` : "";

@@ -1,195 +1,33 @@
-<div class="w3-container w3-card caner-card w3-margin-bottom w3-round-large">
-  <h2 class="w3-text-grey w3-padding-16">
-    <i class="fa fa-street-view fa-fw w3-margin-right w3-xxlarge w3-text-deep-orange"></i>
-    Skills
-  </h2>
+{% card "Skills" %}
+  <h3 class="group">Technical</h3>
+  <p>For brewity I won't make this section a wordmap dump of all the tech stuff I'm familiar with. I'll just list my general preferences, the rest you can probably figure out from my <a href="https://github.com/{{ site.social.github }}">GitHub profile</a></p>
+  <ul class="ratings">
+    <li><span class="what">Linux</span>{% stars 5 %}<span class="note">Using Linux daily since 2005; entire workflow is on Linux.</span></li>
+    <li><span class="what">Git</span>{% stars 5 %}<span class="note"><a href="https://github.com/cderici">github.com/cderici</a></span></li>
+    <li><span class="what">NeoVim</span>{% stars 4 %}<span class="note">Daily driver since 2023; I'll make it a 5 star when I write my own plugin.</span></li>
+    <li><span class="what">Emacs</span>{% stars 3 %}<span class="note">Used to be my daily driver for ~6 years; not a power user.</span></li>
+    <li><span class="what">GoLand / VS Code</span>{% stars 2 %}<span class="note">Main IDEs for Go and general editing.</span></li>
+    <li><span class="what">LaTeX</span>{% stars 4 %}<span class="note">Authoring papers and dissertations with LaTeX since 2005.</span></li>
+  </ul>
 
-  <div class="w3-container">
-    <!-- Technical -->
-    <p><strong>Technical</strong></p>
-    <p>For brewity I won't make this section a wordmap dump of all the tech stuff I'm familiar with. I'll just list my general preferences, the rest you can probably figure out from my <a href="{{ site.social.github }}" class="lnk">GitHub profile</a></p>
+  <hr>
+  <ul class="ratings pairs">
+    <li><span class="what">Clear code &amp; testing</span>{% stars 5 %}</li>
+    <li><span class="what">Keeping up with new tech</span>{% stars 4 %}</li>
+    <li><span class="what">Time &amp; resource management</span>{% stars 5 %}</li>
+    <li><span class="what">Team-work &amp; communication</span>{% stars 5 %}</li>
+    <li><span class="what">Attention span &amp; focus</span>{% stars 4 %}</li>
+    <li><span class="what">Self-motivation</span>{% stars 5 %}</li>
+    <li><span class="what">Coding speed</span>{% stars 3 %}</li>
+    <li><span class="what">Edge Case Testing</span>{% stars 4 %}</li>
+  </ul>
 
-    <div class="w3-row">
-      <div class="w3-col m2">Linux</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align"><em>Using Linux daily since 2005; entire workflow is on Linux.</em></div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2">Git</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align">
-        <em><a class="lnk" href="https://github.com/cderici">github.com/cderici</a></em>
-      </div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2">NeoVim</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align"><em>Daily driver since 2023; I'll make it a 5 star when I write my own plugin.</em></div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2">Emacs</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star-o w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align"><em>Used to be my daily driver for ~6 years; not a power user.</em></div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2">GoLand / VS Code</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i><i class="fa fa-star-o w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align"><em>Main IDEs for Go and general editing.</em></div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2">LaTeX</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align"><em>Authoring papers and dissertations with LaTeX since 2005.</em></div>
-    </div>
-	<br><hr><br>
-    <!-- Professional (general) -->
-    <div class="w3-row">
-      <div class="w3-col m4">Clear code &amp; testing</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-      </div>
-
-      <div class="w3-col m4">Keeping up with new tech</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m4">Time &amp; resource management</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-      </div>
-
-      <div class="w3-col m4">Team-work &amp; communication</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-      </div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m4">Attention span &amp; focus</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-
-      <div class="w3-col m4">Self-motivation</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-      </div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m4">Coding speed</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star-o w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-
-      <div class="w3-col m4">Edge Case Testing</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-    </div>
-
-
-	<br><hr><br>
-
-    <!-- Personal -->
-    <p><strong>Personal</strong></p>
-
-    <div class="w3-row">
-      <div class="w3-col m2">Electric guitar &amp; music</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align">
-        <em>Former semi-pro musician; now record guitar covers for fun. Check out the <a href="{{ site.links.page_music }}" class="lnk">music page here</a></em>
-      </div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2">Fantasy role-playing</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align">
-        <em>~10 years as player and DM (mostly D&D 3.5e / AD&D).</em>
-      </div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2">Tango</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star-o w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i><i class="fa fa-star-o w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align"><em>Took six months of lessons; still a beginner.</em></div>
-    </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2">StarCraft II (Zerg)</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i><i class="fa fa-star-o w3-text-deep-orange"></i>
-        <i class="fa fa-star-o w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align">
-        <em>Masters 3 on NA. See <a class="lnk" href="https://starcraft2.com/en-us/profile/1/1/7890604/ladders?ladderId=summary">battle-net profile</a>.</em>
-      </div>
-    </div>
-
-  </div>
-  <br>
-  <br>
-</div>
-
+  <hr>
+  <h3 class="group">Personal</h3>
+  <ul class="ratings">
+    <li><span class="what">Electric guitar &amp; music</span>{% stars 4 %}<span class="note">Former semi-pro musician; now record guitar covers for fun. Check out the <a href="{{ site.links.page_music }}">music page here</a></span></li>
+    <li><span class="what">Fantasy role-playing</span>{% stars 4 %}<span class="note">~10 years as player and DM (mostly D&amp;D 3.5e / AD&amp;D).</span></li>
+    <li><span class="what">Tango</span>{% stars 1 %}<span class="note">Took six months of lessons; still a beginner.</span></li>
+    <li><span class="what">StarCraft II (Zerg)</span>{% stars 3 %}<span class="note">Masters 3 on NA. See <a href="https://starcraft2.com/en-us/profile/1/1/7890604/ladders?ladderId=summary">battle-net profile</a>.</span></li>
+  </ul>
+{% endcard %}

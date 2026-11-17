@@ -676,6 +676,72 @@
     .timeline .main, .timeline .sub { grid-column: 1 / -1; }
   }
 
+  /* general content inside cards */
+  .card .panel { color: color-mix(in oklab, var(--text) 88%, var(--muted)); }
+  .card h3.group { margin: 0 0 .7rem; font-size: 1.05rem; color: var(--text); }
+  .card hr {
+    height: 1px;
+    margin: 1.8rem 0;
+    border: 0;
+    background: linear-gradient(90deg, var(--line), transparent);
+  }
+  .bullets ul { margin: 0; padding-left: 1.1rem; }
+  .bullets li { margin-bottom: .45rem; }
+  .bullets li::marker { color: var(--accent); }
+
+  /* star ratings */
+  .stars { display: inline-flex; gap: 3px; white-space: nowrap; }
+  .stars .icon { width: .95rem; height: .95rem; color: color-mix(in oklab, var(--line) 80%, var(--muted)); }
+  .stars .on,
+  .star-inline .icon { color: var(--accent); fill: currentColor; }
+
+  /* rating rows: name · stars · note, columns shared through subgrid */
+  .ratings {
+    display: grid;
+    grid-template-columns: max-content max-content minmax(0, 1fr);
+    column-gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ratings > li {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    padding: 9px 0;
+    border-top: 1px solid color-mix(in oklab, var(--line) 60%, transparent);
+  }
+  .ratings > li:first-child { border-top: 0; }
+  .ratings .what { font-weight: 500; color: var(--text); }
+  .ratings .stars { align-self: start; margin-top: 6px; }  /* on the first line, however long the note */
+  .ratings.pairs .stars { margin-top: 0; align-self: center; }
+  .ratings .note { font-size: .93rem; color: var(--muted); }
+  @media (max-width: 720px) {
+    .ratings { grid-template-columns: minmax(0, 1fr) max-content; }
+    .ratings .note { grid-column: 1 / -1; margin-top: .2rem; }
+  }
+  /* short name + stars pairs, flowing into columns */
+  .ratings.pairs { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); column-gap: 2.5rem; }
+  .ratings.pairs > li {
+    display: flex;
+    grid-column: auto;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 0;
+    border-bottom: 1px solid color-mix(in oklab, var(--line) 60%, transparent);
+  }
+
+  /* CV: publications */
+  .pub-list { margin: 0; padding: 0; list-style: none; }
+  .pub-list > li { padding: 14px 0; border-top: 1px solid color-mix(in oklab, var(--line) 60%, transparent); }
+  .pub-list > li:first-child { padding-top: 0; border-top: 0; }
+  .pub-list > li:last-child { padding-bottom: 0; }
+  .pub-title { margin: 0 0 .3rem; font-family: var(--f-head); font-weight: 600; color: var(--text); }
+  .pub-info { margin: 0 0 .55rem; font-size: .9rem; color: var(--muted); }
+  .pub-info strong { font-weight: 500; color: var(--text); }
+  .pub-list > li:target .pub-title { color: var(--link); }
+
   /* home: intro */
   .intro .panel > * { max-width: 92ch; }
   .intro p { color: color-mix(in oklab, var(--text) 86%, var(--muted)); }
