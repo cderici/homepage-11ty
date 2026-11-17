@@ -2,28 +2,79 @@
 // the pages work without it.
 
 // Lightbox: a link marked data-lightbox opens its image in a native <dialog>.
-// The open/close animation is CSS (@starting-style); Esc closes it natively.
+// Links sharing a data-lightbox="name" form a gallery: arrows, arrow keys and
+// swipes step through it, and data-title becomes the caption. The open/close
+// animation is CSS (@starting-style); Esc closes it natively.
 const lightbox = document.querySelector("dialog.lightbox");
-const lightboxImg = lightbox?.querySelector("img");
+if (lightbox) {
+  const img = lightbox.querySelector("img");
+  const caption = lightbox.querySelector(".lb-caption");
+  const count = lightbox.querySelector(".lb-count");
+  let group = [];
+  let index = 0;
 
-document.addEventListener("click", (e) => {
-  const link = e.target.closest("a[data-lightbox]");
-  if (link && lightbox) {
-    // let ctrl/cmd/shift/middle clicks open the image in a new tab as usual
-    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
-    e.preventDefault();
-    lightboxImg.src = link.href;
-    lightboxImg.alt = link.querySelector("img")?.alt ?? "";
-    // open once the image is ready, so it animates in whole rather than popping in
+  const preload = (link) => { const i = new Image(); i.src = link.href; return i; };
+
+  // show photo i of the group once it has decoded, so it never pops in half-drawn
+  const show = (i) => {
+    index = (i + group.length) % group.length;
+    const link = group[index];
+    return preload(link).decode().catch(() => {}).then(() => {
+      if (group[index] !== link) return;  // a newer step won the race
+      img.src = link.href;
+      img.alt = link.querySelector("img")?.alt ?? "";
+      caption.textContent = link.dataset.title ?? "";
+      count.textContent = group.length > 1 ? `${index + 1} / ${group.length}` : "";
+      if (lightbox.open) img.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 140, easing: "ease-out" });
+      if (group.length > 1) [index + 1, index - 1].forEach((j) => preload(group[(j + group.length) % group.length]));
+    });
+  };
+
+  const open = (link) => {
+    const name = link.dataset.lightbox;
+    group = name ? [...document.querySelectorAll(`a[data-lightbox="${CSS.escape(name)}"]`)] : [link];
+    lightbox.classList.toggle("multi", group.length > 1);
     link.setAttribute("aria-busy", "true");
-    lightboxImg.decode().catch(() => {}).finally(() => {
+    show(group.indexOf(link)).finally(() => {
       link.removeAttribute("aria-busy");
       lightbox.showModal();
     });
-  } else if (lightbox?.open && e.target.closest("dialog.lightbox")) {
-    lightbox.close();
-  }
-});
+  };
+
+  let swiped = false;
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a[data-lightbox]");
+    if (link) {
+      // let ctrl/cmd/shift/middle clicks open the image in a new tab as usual
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault();
+      open(link);
+    }
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (swiped) { swiped = false; return; }
+    if (e.target.closest(".lb-prev")) show(index - 1);
+    else if (e.target.closest(".lb-next")) show(index + 1);
+    else lightbox.close();  // the photo, the backdrop or the close button
+  });
+
+  lightbox.addEventListener("keydown", (e) => {
+    if (group.length < 2) return;
+    if (e.key === "ArrowLeft") { e.preventDefault(); show(index - 1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); show(index + 1); }
+  });
+
+  // horizontal swipe on touch screens
+  let startX = null;
+  lightbox.addEventListener("pointerdown", (e) => { startX = e.pointerType === "mouse" ? null : e.clientX; });
+  lightbox.addEventListener("pointerup", (e) => {
+    if (startX === null || group.length < 2) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 40) { swiped = true; show(index + (dx < 0 ? 1 : -1)); }
+  });
+}
 
 // A link to a collapsed section (e.g. #edu-phd-indiana) opens it: on click,
 // on hash changes (back/forward), and when the page loads with that hash.

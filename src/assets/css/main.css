@@ -437,21 +437,25 @@
 
   /* lightbox: native <dialog>, fading and scaling in and out with no JS animation */
   dialog.lightbox {
-    max-width: 92vw;
-    max-height: 92vh;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
     padding: 0;
     border: 0;
     background: transparent;
+    color: var(--text);
     cursor: zoom-out;
     opacity: 0;
-    transform: scale(.94);
+    transform: scale(.96);
     transition:
       opacity .2s var(--ease),
       transform .22s var(--ease),
       overlay .22s allow-discrete,
       display .22s allow-discrete;
   }
-  dialog.lightbox[open] { opacity: 1; transform: none; }
+  dialog.lightbox[open] { display: grid; place-items: center; opacity: 1; transform: none; }
   dialog.lightbox::backdrop {
     background: rgb(4 6 10 / 0);
     backdrop-filter: blur(0);
@@ -461,12 +465,54 @@
       overlay .22s allow-discrete,
       display .22s allow-discrete;
   }
-  dialog.lightbox[open]::backdrop { background: rgb(4 6 10 / .85); backdrop-filter: blur(4px); }
+  dialog.lightbox[open]::backdrop { background: rgb(4 6 10 / .88); backdrop-filter: blur(4px); }
   @starting-style {
-    dialog.lightbox[open] { opacity: 0; transform: scale(.94); }
+    dialog.lightbox[open] { opacity: 0; transform: scale(.96); }
     dialog.lightbox[open]::backdrop { background: rgb(4 6 10 / 0); backdrop-filter: blur(0); }
   }
-  dialog.lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 10px; }
+  dialog.lightbox figure { margin: 0; max-width: 92vw; }
+  dialog.lightbox img {
+    max-width: 92vw;
+    max-height: calc(92dvh - 2.5rem);
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  dialog.lightbox figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.5rem;
+    padding-top: .6rem;
+    font-size: .92rem;
+    color: var(--muted);
+  }
+  .lb-count { font-family: var(--f-mono); font-size: .8rem; color: var(--faint); white-space: nowrap; }
+
+  .lb-btn {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 44px; height: 44px;
+    border: 1px solid color-mix(in oklab, var(--line) 80%, transparent);
+    border-radius: 50%;
+    background: rgb(13 20 34 / .6);
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color var(--t-fast), box-shadow var(--t-med), background-color var(--t-fast);
+  }
+  .lb-btn:hover {
+    border-color: color-mix(in oklab, var(--accent) 50%, var(--line));
+    background: rgb(13 20 34 / .85);
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .lb-btn .icon { width: 22px; height: 22px; }
+  .lb-prev { left: 16px; top: 50%; translate: 0 -50%; }
+  .lb-next { right: 16px; top: 50%; translate: 0 -50%; }
+  .lb-close { right: 16px; top: 16px; }
+  dialog.lightbox:not(.multi) :is(.lb-prev, .lb-next) { display: none; }
+  @media (max-width: 600px) {
+    .lb-prev, .lb-next { top: auto; bottom: 12px; translate: none; }  /* out of the way of the photo; swipe works too */
+  }
 
   /* back to top */
   .to-top {

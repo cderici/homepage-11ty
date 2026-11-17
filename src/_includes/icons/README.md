@@ -7,6 +7,7 @@ No icon font or runtime requests.
 Sources (pinned to the versions used in `design/prototype`):
 
 - Lucide `lucide-static@0.460.0` — ISC license — everything except `x.svg`.
+  Lucide's own `x` icon is saved as `close.svg` so it doesn't clash with the X logo.
   (Lucide 1.x dropped brand icons, hence the pin.)
 - Simple Icons `simple-icons@13.21.0` — CC0 — `x.svg`.
 
