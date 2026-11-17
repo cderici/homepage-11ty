@@ -769,9 +769,59 @@
   .thumb img, .figure img { width: 100%; }
   .figure { width: fit-content; max-width: 100%; margin: .4rem 0 1.4rem; background: #fff; }
   @media (max-width: 600px) {
-    .prose .media { grid-template-columns: minmax(0, 1fr); }
+    .prose .media, .prose .media.wide { grid-template-columns: minmax(0, 1fr); }
     .prose .media .thumb { max-width: 240px; }
   }
+
+  .prose .media.wide { grid-template-columns: 300px minmax(0, 1fr); }
+  .prose .media > div > :last-child { margin-bottom: 0; }
+
+  /* photo galleries: uniform tiles, the full photo opens in the lightbox */
+  .panel > .gallery { max-width: none; }
+  .prose ul.gallery { padding: 0; }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+    gap: 12px;
+    margin: .4rem 0 1.4rem;
+    padding: 0;
+    list-style: none;
+  }
+  .gallery .thumb { aspect-ratio: 4 / 3; }
+  .gallery .thumb img { height: 100%; object-fit: cover; transition: transform .35s var(--ease); }
+  .gallery .thumb:hover img { transform: scale(1.03); }
+
+  /* portraits with a name and years underneath */
+  .gallery.portraits { grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 20px 16px; }
+  .portraits li { margin: 0; }
+  .portraits .thumb { aspect-ratio: 4 / 5; margin-bottom: .55rem; }
+  .portraits .thumb img { object-position: 50% 20%; filter: grayscale(.15); }
+  .portraits .name { display: block; font-weight: 500; line-height: 1.35; color: var(--text); }
+  .portraits .years { font-family: var(--f-mono); font-size: .78rem; color: var(--faint); }
+
+  /* a single photo between paragraphs, at the size it was chosen for */
+  .shot {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin: .2rem auto 1.6rem;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    background: none;
+    cursor: zoom-in;
+    transition: border-color var(--t-fast), box-shadow var(--t-med);
+  }
+  .shot:hover {
+    border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
+    box-shadow: 0 0 18px -6px var(--glow);
+  }
+  .shot img { max-width: 100%; height: auto; }  /* displayed at its width attribute */
+  .story .panel > .shot { max-width: 100%; }
+
+  /* Instagram's embed script replaces the blockquote with its own frame */
+  .insta { display: flex; justify-content: center; margin: .4rem 0 1.4rem; }
+  .insta .instagram-media { width: min(100%, 540px); min-width: 0 !important; margin: 0 !important; border-radius: var(--r-sm) !important; }
 
   /* embedded pages (status board, kit list) */
   .embed {
