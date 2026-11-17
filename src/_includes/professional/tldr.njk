@@ -1,44 +1,21 @@
-<div class="w3-container w3-card caner-card w3-margin-bottom w3-animate-opacity w3-round-large">
-  <h2 class="w3-text-grey w3-padding-16">
-    <i class="fa fa-check fa-fw w3-margin-right w3-xxlarge w3-text-deep-orange"></i>
-    TL;DR
-  </h2>
-  <div class="w3-container w3-margin-left w3-margin-right">
+{% card "TL;DR", "tldr" %}
+  <h3>Career Timeline</h3>
+  <ol class="timeline">
+    <li><span class="when">2005 – 2010</span><span class="kind">School</span><a class="main" href="#edu-bsc-bilgi">BSc</a><span class="sub">Proper Tail Calls from First-Class Continuations in JavaScript (<a href="/assets/docs/caner_bsc_thesis.pdf">dissertation</a>)</span></li>
+    <li><span class="when">2010 – 2012</span><span class="kind">Work</span><a class="main" href="#work-asseco">ASEE Group</a><span class="sub">Software Engineer</span></li>
+    <li><span class="when">2012 – 2014</span><span class="kind">School</span><a class="main" href="#edu-msc-bogazici">MSc</a><span class="sub">Focus: Machine Learning &amp; NLP (<a href="/assets/docs/caner_msc_thesis.pdf">dissertation</a>)</span></li>
+    <li><span class="when">2015 – 2021</span><span class="kind">School</span><a class="main" href="#edu-phd-indiana">PhD</a><span class="sub">Self-Hosting Functional Programming Languages on Meta-tracing JIT Compilers</span></li>
+    <li><span class="when">2021 – 2024</span><span class="kind">Work</span><a class="main" href="#work-canonical">Canonical</a><span class="sub">Software Engineer II</span></li>
+    <li><span class="when">2024 – 2025</span><span class="kind">School</span><a class="main" href="#edu-phd-indiana">PhD</a><span class="sub">Returned to finish <a href="{{ site.links.dissertation }}">dissertation</a></span></li>
+  </ol>
 
-	<h4>Career Timeline:</h4>
-<div class="timeline-wrap">
-  <dl class="timeline timeline-4">
-    <dt>2005 – 2010</dt><dd class="kind">School</dd><dd class="main"><a class="lnk" href="#edu-bsc-bilgi" onclick="document.getElementById('edu-bsc-bilgi').open = true">BSc</a></dd><dd class="sub wrap">Proper Tail Calls from First-Class Continuations in JavaScript (<a href="/assets/docs/caner_bsc_thesis.pdf" class="lnk">dissertation</a>)</dd>
-    <dt>2010 – 2012</dt><dd class="kind">Work</dd><dd class="main"><a class="lnk" href="#work-asseco" onclick="document.getElementById('work-asseco').open = true">ASEE Group</a></dd><dd class="sub">Software Engineer</dd>
-    <dt>2012 – 2014</dt><dd class="kind">School</dd><dd class="main"><a class="lnk" href="#edu-msc-bogazici" onclick="document.getElementById('edu-msc-bogazici').open = true">MSc</a></dd><dd class="sub">Focus: Machine Learning & NLP (<a href="/assets/docs/caner_msc_thesis.pdf" class="lnk">dissertation</a>)</dd>
-    <dt>2015 – 2021</dt><dd class="kind">School</dd><dd class="main"><a class="lnk" href="#edu-phd-indiana" onclick="document.getElementById('edu-phd-indiana').open = true">PhD</a></dd><dd class="sub wrap">Self-Hosting Functional Programming Languages on Meta-tracing JIT Compilers</dd>
-    <dt>2021 – 2024</dt><dd class="kind">Work</dd><dd class="main"><a class="lnk" href="#work-canonical" onclick="document.getElementById('work-canonical').open = true">Canonical</a></dd><dd class="sub">Software Engineer II</dd>
-    <dt>2024 – 2025</dt><dd class="kind">School</dd><dd class="main"><a class="lnk" href="#edu-phd-indiana" onclick="document.getElementById('edu-phd-indiana').open = true">PhD</a></dd><dd class="sub">Returned to finish <a href="{{ site.links.dissertation }}" class="lnk">dissertation</a></dd>
-  </dl>
-</div>
-
-<br>
-<!-- View Resume PDF -->
-	<details class="pdf-viewer w3-margin-top w3-center">
-  <summary class="w3-button w3-deep-orange w3-text-white w3-padding-large w3-round-large w3-left-align">
-    <i class="fa fa-file-pdf-o w3-margin-right"></i>
-    View Resume
-    <span class="w3-small w3-opacity w3-margin-left">expands below</span>
-  </summary>
-
-  <div class="w3-container w3-margin-top">
-    <p class="w3-small w3-text-grey">
-      <a class="lnk" href="/assets/docs/CanerDerici_Resume.pdf" target="_blank" rel="noopener">Open in new tab</a>
+  <details class="pdf">
+    <summary>{% icon "file-text" %}View Resume<span class="hint">expands below</span>{% icon "chevron-right" %}</summary>
+    <p class="pdf-links">
+      <a href="/assets/docs/CanerDerici_Resume.pdf" target="_blank" rel="noopener">Open in new tab</a>
       &middot;
-      <a class="lnk" href="/assets/docs/CanerDerici_Resume.pdf" download>Download</a>
+      <a href="/assets/docs/CanerDerici_Resume.pdf" download>Download</a>
     </p>
-    <iframe src="/assets/docs/CanerDerici_Resume.pdf" width="100%" height="1200"></iframe>
-  </div>
-</details>
-
-<br>
-
-
-  </div>
-  <br>
-</div>
+    <iframe src="/assets/docs/CanerDerici_Resume.pdf" title="Resume (PDF)" loading="lazy"></iframe>
+  </details>
+{% endcard %}

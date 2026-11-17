@@ -25,6 +25,19 @@ document.addEventListener("click", (e) => {
   }
 });
 
+// A link to a collapsed section (e.g. #edu-phd-indiana) opens it: on click,
+// on hash changes (back/forward), and when the page loads with that hash.
+const openDetails = (hash) => {
+  const el = hash.length > 1 && document.getElementById(decodeURIComponent(hash.slice(1)));
+  if (el instanceof HTMLDetailsElement) el.open = true;
+};
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (a) openDetails(a.hash);
+});
+addEventListener("hashchange", () => openDetails(location.hash));
+openDetails(location.hash);
+
 // Back to top: shown once the nav has scrolled out of view.
 const toTop = document.querySelector(".to-top");
 const nav = document.querySelector(".site-nav");

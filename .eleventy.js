@@ -49,6 +49,13 @@ export default function(eleventyConfig) {
     return `<section class="card ${cls}"><div class="frame"><div class="panel">${heading}${content}</div></div></section>`;
   });
 
+  // A collapsible entry (CV items): {% entry "Title", "2015 – 2021", "optional-id" %}…{% endentry %}
+  eleventyConfig.addPairedShortcode("entry", (content, title, when = "", id = "") => {
+    const idAttr = id ? ` id="${id}"` : "";
+    const date = when ? `<span class="when">${when}</span>` : "";
+    return `<details class="entry"${idAttr}><summary>${icon("chevron-right")}<span class="what">${title}</span>${date}</summary><div class="entry-body">${content}</div></details>`;
+  });
+
   // date filter: {{ "now" | date("yyyy") }} or {{ someDate | date("yyyy-LL-dd") }}
   eleventyConfig.addFilter("date", (value, format = "yyyy") => {
     const d = value === "now" ? new Date() : value;

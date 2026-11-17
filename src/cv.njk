@@ -1,28 +1,16 @@
 ---
-layout: base.njk
+layout: page.njk
 title: Professional
+profileImage: /assets/img/cvProfileCompressed.jpg
+profileImageMin: /assets/img/cvProfileCompressed-Cropped.jpg
 ---
 
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
-  <div class="w3-row-padding">
-    <div class="w3-quarter">
-      {% set profileImage = "/assets/img/cvProfileCompressed.jpg" %}
-	  {% set profileImageMin = "/assets/img/cvProfileCompressed-Cropped.jpg" %}
-      {% include "left-card.njk" %}
-    </div>
-    <div class="w3-threequarter">
-      {% include "header.njk" %}
-
-      {% include "professional/tldr.njk" %}
-      {% include "professional/education.njk" %}
-      {% include "professional/experience.njk" %}
-      {% include "professional/projects.njk" %}
-      {% include "professional/publications.njk" %}
-      {% include "professional/natural_languages.njk" %}
-      {% include "professional/programming_languages.njk" %}
-      {% include "professional/skills.njk" %}
-      {% include "professional/scholarships.njk" %}
-    </div>
-  </div>
-</div>
-
+{% include "professional/tldr.njk" %}
+{% include "professional/education.njk" %}
+{% include "professional/experience.njk" %}
+{% include "professional/projects.njk" %}
+{% include "professional/publications.njk" %}
+{% include "professional/natural_languages.njk" %}
+{% include "professional/programming_languages.njk" %}
+{% include "professional/skills.njk" %}
+{% include "professional/scholarships.njk" %}

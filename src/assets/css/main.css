@@ -506,6 +506,176 @@
     box-shadow: 0 0 18px -6px var(--glow);
   }
 
+  /* collapsible sections open and close with a short height transition where
+     the browser can animate to `auto` (elsewhere they just snap open) */
+  @supports (interpolate-size: allow-keywords) {
+    :root { interpolate-size: allow-keywords; }
+    details::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition: block-size var(--t-med) var(--ease), content-visibility var(--t-med) allow-discrete;
+    }
+    details[open]::details-content { block-size: auto; }
+  }
+  summary { cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+
+  /* collapsible entry (CV): chevron, title, date on the right */
+  .entry { border-top: 1px solid color-mix(in oklab, var(--line) 75%, transparent); }
+  .entry:last-child { border-bottom: 1px solid color-mix(in oklab, var(--line) 75%, transparent); }
+  .entry > summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 10px;
+    margin: 0 -10px;
+    padding: 11px 10px;
+    border-radius: var(--r-sm);
+    font-weight: 500;
+    color: var(--text);
+    transition: background-color var(--t-fast);
+  }
+  .entry > summary:hover { background: color-mix(in oklab, var(--surface-2) 70%, transparent); }
+  .entry > summary > .icon {
+    align-self: flex-start;
+    margin-top: .33em;   /* centred on the first line, however many lines the title takes */
+    width: 1rem; height: 1rem;
+    color: var(--accent);
+    transition: transform var(--t-med) var(--ease);
+  }
+  .entry[open] > summary > .icon { transform: rotate(90deg); }
+  .entry .what { flex: 1; min-width: 0; }
+  .entry .when {
+    margin-left: auto;
+    font-family: var(--f-mono);
+    font-size: .8rem;
+    font-weight: 400;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  @media (max-width: 600px) {
+    .entry .when { flex-basis: 100%; margin-left: calc(1rem + 10px); }
+  }
+  .entry-body {
+    max-width: 92ch;
+    padding: 4px 0 16px 26px;
+    color: color-mix(in oklab, var(--text) 86%, var(--muted));
+  }
+  .entry-body > :last-child { margin-bottom: 0; }
+
+  /* label / value rows inside an entry */
+  .kv {
+    display: grid;
+    grid-template-columns: 14ch minmax(0, 1fr);
+    gap: .55rem 1.25rem;
+    margin: 1rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid color-mix(in oklab, var(--line) 75%, transparent);
+  }
+  .kv dt {
+    padding-top: .25em;
+    font-family: var(--f-mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .kv dd { margin: 0; }
+  @media (max-width: 600px) {
+    .kv { grid-template-columns: minmax(0, 1fr); row-gap: .2rem; }
+    .kv dd { margin-bottom: .6rem; }
+  }
+
+  /* "View Resume"-style viewer: an accent button that expands an embedded PDF */
+  .pdf { margin-top: 1.4rem; }
+  .pdf > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--line));
+    border-radius: var(--r-sm);
+    background: color-mix(in oklab, var(--accent) 10%, var(--surface));
+    font-weight: 500;
+    color: var(--text);
+    transition: border-color var(--t-fast), box-shadow var(--t-med);
+  }
+  .pdf > summary:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 18px -6px var(--accent);
+  }
+  .pdf > summary > .icon:first-child { color: var(--accent); }
+  .pdf > summary > .icon:last-child { color: var(--muted); transition: transform var(--t-med) var(--ease); }
+  .pdf[open] > summary > .icon:last-child { transform: rotate(90deg); }
+  .pdf .hint { font-size: .8rem; font-weight: 400; color: var(--muted); }
+  .pdf-links { margin: 1rem 0 0; font-size: .9rem; color: var(--muted); }
+  .pdf iframe {
+    display: block;
+    width: 100%;
+    height: min(85vh, 1200px);
+    margin-top: .8rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    background: #fff;
+  }
+
+  /* CV: career timeline. Rows share columns through subgrid. */
+  .tldr h3 { margin-bottom: 1rem; font-size: 1.05rem; }
+  .timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, max-content) minmax(0, 1fr);
+    gap: .6rem 1.25rem;
+    margin: 0 0 .4rem;
+    padding: 0 0 0 24px;
+    list-style: none;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 4px; top: .6em; bottom: .6em;
+    width: 1px;
+    background: linear-gradient(var(--line), color-mix(in oklab, var(--accent) 50%, var(--line)));
+  }
+  .timeline li {
+    position: relative;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+  }
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: -24px; top: .5em;
+    width: 9px; height: 9px;
+    border: 2px solid color-mix(in oklab, var(--accent) 60%, var(--line));
+    border-radius: 50%;
+    background: var(--surface);
+  }
+  .timeline li:last-child::before { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  .timeline .when {
+    font-family: var(--f-mono);
+    font-size: .85rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .timeline .kind {
+    font-family: var(--f-mono);
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .timeline .main { font-weight: 600; }
+  .timeline .sub { color: color-mix(in oklab, var(--text) 80%, var(--muted)); }
+  @media (max-width: 720px) {
+    .timeline { grid-template-columns: max-content minmax(0, 1fr); row-gap: .9rem; }
+    .timeline li { row-gap: .1rem; }
+    .timeline .main, .timeline .sub { grid-column: 1 / -1; }
+  }
+
   /* home: intro */
   .intro .panel > * { max-width: 92ch; }
   .intro p { color: color-mix(in oklab, var(--text) 86%, var(--muted)); }
