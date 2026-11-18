@@ -1,6 +1,7 @@
 // .eleventy.js (ESM)
 import { readFileSync } from "node:fs";
 import { DateTime } from "luxon";
+import Image, { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 // Inline SVG icons from src/_includes/icons (see the README there).
 const ICON_DIR = new URL("./src/_includes/icons/", import.meta.url);
@@ -40,6 +41,41 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/docs": "assets/docs" });
   eleventyConfig.addPassthroughCopy({ "src/assets/favicon": "/" });
   eleventyConfig.addPassthroughCopy("src/CNAME");
+
+  // Images. Every local <img> becomes a WebP srcset (400/800/1600w, never
+  // upscaled) with width/height, so pages don't shift as photos load.
+  // Set `sizes` on images narrower than the content column, and
+  // `eleventy:widths="W,2W"` on photos shown at a fixed width W.
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+    formats: ["webp"],
+    widths: [400, 800, 1600],
+    htmlOptions: {
+      fallback: "smallest",  // width/height from the smallest size, i.e. the 1x size for fixed-width photos
+      imgAttributes: {
+        loading: "lazy",
+        decoding: "async",
+        sizes: "(max-width: 880px) calc(100vw - 72px), 860px",
+      },
+    },
+  });
+
+  // Lightbox links point at the full photo; serve a 2000px WebP instead of
+  // the camera original (some are 4000px / 6 MB).
+  eleventyConfig.htmlTransformer.addPosthtmlPlugin("html", () => async (tree) => {
+    const jobs = [];
+    tree.match({ tag: "a" }, (node) => {
+      const a = node.attrs;
+      if (a && "data-lightbox" in a && /^\/[^/].*\.(jpe?g|png|webp)$/i.test(a.href ?? "")) {
+        jobs.push(
+          Image(`src${decodeURI(a.href)}`, { widths: [2000], formats: ["webp"], outputDir: "_site/img/", urlPath: "/img/" })
+            .then((md) => { a.href = md.webp[0].url; }),
+        );
+      }
+      return node;
+    });
+    await Promise.all(jobs);
+    return tree;
+  });
 
   eleventyConfig.addShortcode("icon", icon);
 

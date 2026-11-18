@@ -5,7 +5,7 @@
 <div class="frame profile">
   <div class="panel">
     <a class="photo" href="{{ imgFull }}" data-lightbox>
-      <img src="{{ imgCard }}" alt="Photo of {{ site.title }}">
+      <img src="{{ imgCard }}" alt="Photo of {{ site.title }}" sizes="(max-width: 880px) 420px, 330px" loading="eager" fetchpriority="high">
       <span class="name">{{ site.title }}</span>
     </a>
 
