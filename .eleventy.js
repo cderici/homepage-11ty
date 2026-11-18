@@ -85,6 +85,23 @@ export default function(eleventyConfig) {
     return `<section class="card ${cls}"><div class="frame"><div class="panel">${heading}${content}</div></div></section>`;
   });
 
+  // Click-to-load video players. The page shows a preview with a play button;
+  // main.js swaps in the real player (and its scripts and cookies) on click.
+  //   {% youtube "videoId", "Accessible title", startSeconds %}
+  //   {% twitch "videoId", "Accessible title", "0h2m30s" %}
+  const facade = (src, title, kind, thumb = "") =>
+    `<button class="facade facade-${kind}" type="button" data-src="${escapeAttr(src)}" data-title="${escapeAttr(title)}" aria-label="${kind === "youtube" ? "YouTube" : "Twitch"}: play ${escapeAttr(title)}">` +
+    (thumb ? `<img src="${thumb}" alt="" loading="lazy" decoding="async" eleventy:ignore>` : "") +
+    `<span class="facade-play">${icon("play")}</span>` +
+    `<span class="facade-label">${icon(kind)}${kind === "youtube" ? "YouTube" : "Twitch"}</span></button>`;
+  eleventyConfig.addShortcode("youtube", (id, title, start = "") =>
+    facade(`https://www.youtube-nocookie.com/embed/${id}?autoplay=1${start ? `&start=${start}` : ""}`, title, "youtube",
+      `https://i.ytimg.com/vi/${id}/hqdefault.jpg`));
+  // Twitch only plays on the hostnames listed as `parent`
+  const TWITCH_PARENTS = ["home.dericilab.live", "dericilab.live", "localhost"].map((h) => `parent=${h}`).join("&");
+  eleventyConfig.addShortcode("twitch", (video, title, time = "") =>
+    facade(`https://player.twitch.tv/?video=${video}${time ? `&time=${time}` : ""}&autoplay=true&${TWITCH_PARENTS}`, title, "twitch"));
+
   // A 0–5 star rating: {% stars 4 %}
   eleventyConfig.addShortcode("stars", (n) => {
     const filled = Math.max(0, Math.min(5, Number(n)));

@@ -76,6 +76,19 @@ if (lightbox) {
   });
 }
 
+// Click-to-load video players: swap the preview for the real player.
+document.addEventListener("click", (e) => {
+  const preview = e.target.closest("button.facade");
+  if (!preview) return;
+  const player = document.createElement("iframe");
+  player.src = preview.dataset.src;
+  player.title = preview.dataset.title;
+  player.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+  player.allowFullscreen = true;
+  preview.replaceWith(player);
+  player.focus();
+});
+
 // A link to a collapsed section (e.g. #edu-phd-indiana) opens it: on click,
 // on hash changes (back/forward), and when the page loads with that hash.
 const openDetails = (hash) => {

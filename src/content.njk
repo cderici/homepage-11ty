@@ -4,9 +4,6 @@ title: Building a Community
 profileImage: /assets/img/content/profile41.jpg
 ---
 
-{# Twitch embeds only load on the hostnames listed as `parent`. #}
-{% set twitchParents = "parent=home.dericilab.live&parent=dericilab.live&parent=localhost" %}
-
 {% card "Building a Community", "prose" %}
   <p>In 2020 I started creating content on Twitch as a hobby, and I successfully built a growing community around: (as of 2021)</p>
   <ul>
@@ -26,17 +23,17 @@ profileImage: /assets/img/content/profile41.jpg
 
   <div class="video">
     <p>In this video I'm writing the same program (binary search) in C++, Python and Racket, showing beginners that there isn’t much difference at the start. Title: <b>"Start Programming! Doesn't matter which language, start today, start now!"</b></p>
-    <iframe src="https://www.youtube-nocookie.com/embed/UvYrdeuknIk?start=1283" title="Start Programming! (YouTube)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {% youtube "UvYrdeuknIk", "Start Programming! (YouTube)", 1283 %}
   </div>
 
   <div class="video">
     <p>Introducing Object-Oriented Programming to beginners.</p>
-    <iframe src="https://www.youtube-nocookie.com/embed/P6liuF9rz-A" title="Object-Oriented Programming for beginners (YouTube)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {% youtube "P6liuF9rz-A", "Object-Oriented Programming for beginners (YouTube)" %}
   </div>
 
   <div class="video">
     <p>I like casting professional StarCraft II games every once in a while :)</p>
-    <iframe src="https://www.youtube-nocookie.com/embed/ywRTMhhYZ2k" title="StarCraft II casting (YouTube)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {% youtube "ywRTMhhYZ2k", "StarCraft II casting (YouTube)" %}
   </div>
 {% endcard %}
 
@@ -48,7 +45,7 @@ profileImage: /assets/img/content/profile41.jpg
       During live game dev, I modified a Twitch chat bot to relay keypress events from chat into my computer, so viewers could play the Unity game we were developing!
       <span class="fallback"><a href="https://www.twitch.tv/videos/589280502?time=0h2m30s">[Video Link]</a> (if the player doesn't load)</span>
     </p>
-    <iframe src="https://player.twitch.tv/?video=589280502&autoplay=false&{{ twitchParents }}" title="Live game dev with chat controls (Twitch)" loading="lazy" allowfullscreen></iframe>
+    {% twitch "589280502", "Live game dev with chat controls (Twitch)" %}
   </div>
 
   <div class="video">
@@ -56,7 +53,7 @@ profileImage: /assets/img/content/profile41.jpg
       Following a Unity tutorial with chat to build a rolling-ball platformer.
       <span class="fallback"><a href="https://www.twitch.tv/videos/574815461?time=0h21m48s">[Video Link]</a> (if the player doesn't load)</span>
     </p>
-    <iframe src="https://player.twitch.tv/?video=574815461&time=0h21m48s&autoplay=false&{{ twitchParents }}" title="Unity rolling-ball platformer (Twitch)" loading="lazy" allowfullscreen></iframe>
+    {% twitch "574815461", "Unity rolling-ball platformer (Twitch)", "0h21m48s" %}
   </div>
 
   <div class="video">
@@ -64,6 +61,6 @@ profileImage: /assets/img/content/profile41.jpg
       Nice moments from StarCraft: Brood War sessions :)
       <span class="fallback"><a href="https://www.twitch.tv/videos/558868402">[Video Link]</a> (if the player doesn't load)</span>
     </p>
-    <iframe src="https://player.twitch.tv/?video=558868402&autoplay=false&{{ twitchParents }}" title="StarCraft: Brood War moments (Twitch)" loading="lazy" allowfullscreen></iframe>
+    {% twitch "558868402", "StarCraft: Brood War moments (Twitch)" %}
   </div>
 {% endcard %}
