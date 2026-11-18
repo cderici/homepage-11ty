@@ -58,7 +58,9 @@
 
 @property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 @keyframes orbit { to { --a: 360deg; } }
-@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+/* starts at .01, not 0: Chrome ignores fully transparent elements when measuring
+   Largest Contentful Paint, so a fade from 0 left the page with no LCP at all */
+@keyframes rise { from { opacity: .01; transform: translateY(8px); } }
 
 /* ---------------------------------------------------------------------------
    Design tokens — settled in design/prototype ("dusk" base, "plasma" accent).
