@@ -1,15 +1,20 @@
 {
   "title": "Caner Derici, PhD",
+  "url": "https://home.dericilab.live",
   "tagline": "Software Engineer · PL/Compilers",
+  "description": "Caner Derici, PhD — Applied Scientist at Amazon Web Services, working on compilers, programming languages and formal verification.",
   "email": "caner@dericilab.live",
-  "location": "Sandy, UT, USA",
+  "role": "Applied Scientist",
+  "company": "Amazon – AWS",
+  "location": "Austin, TX, USA",
   "social": {
     "github": "cderici",
     "youtube": "UCQUqjj5SfL9vfJxJ53ygN7w",
     "twitch": "lambda_cd",
     "instagram": "caner.derici",
     "linkedin": "caner-derici-0619b0aa",
-    "twitter": "canerderici"
+    "facebook": "caner.derici.3",
+    "x": "canerderici"
   },
   "links": {
     "website": "https://dericilab.live",

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup · Caner Derici, PhD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ Tokens: Protoss base ============ */
+:root {
+  --bg:#080c15;
+  --surface:#0f1522; --surface-2:#141c2c; --line:#222e46;
+  --text:#e8ecf3; --muted:#95a0b6; --faint:#5a6680;
+
+  --f-head:"Inter",system-ui,sans-serif;
+  --f-body:"Geist",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+
+  --r:14px;
+  --t-fast:.14s; --t-med:.2s; --ease:cubic-bezier(.2,.8,.2,1);
+  --glow-k:.6; --orbit:16s; --bloom:.28;   /* "subtle" travelling light */
+}
+/* Accent: Plasma (fixed). --accent: labels, icons, bullets · --link · --glow: light & hovers · --tint-*: background depth */
+:root { --accent:#ff7a33; --link:#ffa06b; --glow:#55cfe8; --tint-a:#ff6a1a; --tint-b:#55cfe8; }
+
+/* Blues — background family. "dusk" is the current pick; others lean further toward an SC2-like blue.
+   --tint-c: the tone's own blue, used for the large backdrop glows. */
+[data-tone="dusk"]   { --bg:#0d1422; --surface:#151e30; --surface-2:#1b2539; --line:#2b3954; --faint:#66728c; --tint-c:#2f63b8; }
+[data-tone="nexus"]  { --bg:#091631; --surface:#0f1f40; --surface-2:#15284d; --line:#24396a; --faint:#61719a; --muted:#9aa8c6; --tint-c:#1f6fff; }
+[data-tone="warp"]   { --bg:#08192b; --surface:#0e2337; --surface-2:#142b43; --line:#22415e; --faint:#5f7690; --muted:#97a9bd; --tint-c:#14a3e0; }
+[data-tone="khala"]  { --bg:#0c1333; --surface:#141b43; --surface-2:#1a234f; --line:#2b3673; --faint:#6670a0; --muted:#a0a8cc; --tint-c:#4b5dff; }
+[data-tone="abyss"]  { --bg:#050d22; --surface:#0b1731; --surface-2:#101f3c; --line:#1d3159; --faint:#5a6a8e; --tint-c:#2b6cff; }
+
+/* Backdrop glow strength */
+[data-halo="soft"]   { --halo:1; }
+[data-halo="medium"] { --halo:1.7; }
+[data-halo="strong"] { --halo:2.6; }
+
+/* ============ Base ============ */
+*,*::before,*::after { box-sizing:border-box; }
+html { color-scheme:dark; }
+body {
+  margin:0; min-height:100vh;
+  background:
+    radial-gradient(1000px 700px at max(10%, calc(50% - 600px)) -140px, color-mix(in oklab, var(--tint-a) calc(var(--halo) * 13%), transparent), transparent 70%),
+    radial-gradient(900px 650px at min(92%, calc(50% + 680px)) 30%, color-mix(in oklab, var(--tint-b) calc(var(--halo) * 6%), transparent), transparent 70%),
+    radial-gradient(1600px 900px at 50% 115%, color-mix(in oklab, var(--tint-c) calc(var(--halo) * 14%), transparent), transparent 70%),
+    radial-gradient(1400px 600px at 60% -20%, color-mix(in oklab, var(--tint-c) calc(var(--halo) * 9%), transparent), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+  color:var(--text); font-family:var(--f-body);
+  font-size:16.5px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4 { font-family:var(--f-head); font-weight:600; line-height:1.25; margin:0; }
+p { margin:0 0 1em; }
+a { color:var(--link); text-decoration:none;
+    background: linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;
+    transition: background-size var(--t-med) var(--ease); }
+a:hover { background-size:100% 1px; }
+:focus-visible { outline:2px solid var(--glow); outline-offset:3px; border-radius:2px; }
+
+.label {
+  font-family:var(--f-mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); display:flex; align-items:center; gap:.6em; margin-bottom:1.1rem;
+}
+.label::after { content:""; flex:1; height:1px;
+  background:linear-gradient(90deg, color-mix(in oklab, var(--accent) 45%, transparent), transparent); }
+
+/* ============ Frame: 1px border + slow travelling light ============ */
+@property --a { syntax:"<angle>"; inherits:false; initial-value:0deg; }
+@keyframes orbit { to { --a:360deg; } }
+
+.frame {
+  position:relative; isolation:isolate; padding:1px; border-radius:var(--r);
+  background: linear-gradient(var(--line),var(--line));
+}
+.frame > .panel { border-radius:calc(var(--r) - 1px); background:var(--surface); height:100%; }
+
+.frame.lit {
+  background:
+    conic-gradient(from var(--a),
+      transparent 0deg,
+      color-mix(in oklab, var(--glow) calc(var(--glow-k) * 100%), transparent) 30deg,
+      transparent 75deg,
+      transparent 180deg,
+      color-mix(in oklab, var(--glow) calc(var(--glow-k) * 45%), transparent) 206deg,
+      transparent 240deg),
+    linear-gradient(var(--line),var(--line));
+  animation: orbit var(--orbit) linear infinite;
+  animation-delay: var(--phase, 0s);
+}
+/* soft bloom: blurred copy of the light, behind the panel */
+.frame.lit::after {
+  content:""; position:absolute; inset:-2px; z-index:-1; border-radius:inherit;
+  background:inherit; animation:inherit; filter:blur(8px); opacity:var(--bloom); pointer-events:none;
+}
+
+.panel.edge { position:relative; }
+.panel.edge::before {
+  content:""; position:absolute; left:24px; right:24px; top:0; height:1px;
+  background:linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent) 55%, transparent), transparent);
+}
+
+/* ============ Layout ============ */
+.page {
+  max-width:1480px; margin:0 auto; padding:32px clamp(16px,3vw,40px) 48px;
+  display:grid; grid-template-columns: clamp(314px,22vw,330px) minmax(0,1fr); gap:clamp(20px,2vw,32px); align-items:start;
+}
+aside { position:sticky; top:32px; }
+main { display:grid; grid-template-columns:minmax(0,1fr); gap:24px; min-width:0; }
+
+/* ============ Profile card ============ */
+.profile .panel { overflow:hidden; }
+.photo { position:relative; display:block; overflow:hidden; background:none; aspect-ratio: 800/703; cursor:zoom-in; }
+.photo img { width:100%; height:100%; object-fit:cover; display:block; transition: transform .35s var(--ease); }
+.photo:hover img { transform:scale(1.025); }
+.photo::after { content:""; position:absolute; inset:45% 0 0;
+  background:linear-gradient(transparent, color-mix(in oklab, var(--surface) 70%, transparent) 65%, var(--surface)); }
+.photo h1 { position:absolute; left:20px; right:20px; bottom:14px; z-index:1; font-size:1.55rem; color:#fff; }
+.facts { list-style:none; margin:0; padding:18px 20px 6px; display:grid; gap:10px; font-size:.93rem; }
+.facts li { display:flex; align-items:center; gap:11px; color:var(--text); }
+.facts li a { color:var(--text); }
+.facts .ic { color:var(--accent); }
+.facts .role { font-weight:500; }
+.socials { display:flex; justify-content:center; gap:6px; padding:12px 16px 20px; border-top:1px solid var(--line); margin:10px 22px 0; }
+.socials a { width:36px; height:36px; display:grid; place-items:center; border-radius:8px; color:var(--muted); background:none;
+  transition: color var(--t-fast), background-color var(--t-fast), box-shadow var(--t-med); }
+.socials a:hover { color:var(--accent); background:var(--surface-2);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent), 0 0 18px -6px var(--glow); }
+
+.ic-x { transform:scale(.8); }
+.ic { width:18px; height:18px; flex:none; display:inline-block; background:currentColor;
+  -webkit-mask:var(--i) center/contain no-repeat; mask:var(--i) center/contain no-repeat; }
+
+/* ============ Nav: light rises from the bottom edge ============ */
+nav ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+nav a {
+  position:relative; display:block; overflow:hidden; isolation:isolate;
+  padding:7px 13px; white-space:nowrap; font-size:.9rem; font-weight:500;
+  color:var(--muted); background:var(--surface);
+  border:1px solid var(--line); border-radius:8px;
+  transition: color var(--t-fast), border-color var(--t-med);
+}
+/* soft light pooling up from the bottom, inside the button */
+nav a::before {
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:
+    radial-gradient(70% 70% at 50% 120%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 70%),
+    radial-gradient(90% 120% at 50% 130%, color-mix(in oklab, var(--glow) 20%, transparent), transparent 70%);
+  opacity:0; transition: opacity var(--t-med) var(--ease);
+}
+/* hairline that grows from the centre of the bottom edge */
+nav a::after {
+  content:""; position:absolute; left:14%; right:14%; bottom:0; height:1px;
+  background: linear-gradient(90deg, transparent, var(--accent) 30%, color-mix(in oklab, var(--accent) 60%, #fff) 50%, var(--accent) 70%, transparent);
+  box-shadow: 0 0 6px 0 var(--accent), 0 0 14px 1px color-mix(in oklab, var(--accent) 45%, transparent);
+  transform:scaleX(0); transition: transform var(--t-med) var(--ease);
+}
+nav a:hover { color:var(--text); border-color:color-mix(in oklab, var(--accent) 30%, var(--line)); }
+nav a:hover::before { opacity:1; }
+nav a:hover::after { transform:scaleX(1); }
+nav a[aria-current] { color:var(--text); border-color:color-mix(in oklab, var(--accent) 35%, var(--line)); }
+nav a[aria-current]::before { opacity:.7; }
+nav a[aria-current]::after { transform:scaleX(1); }
+nav a[aria-current]:hover::before { opacity:.85; }
+
+/* ============ Content cards ============ */
+.card .panel { padding:30px clamp(24px,3vw,44px); }
+.intro .panel > * { max-width:92ch; }
+.intro .hi { font-family:var(--f-head); font-size:1.7rem; margin-bottom:.6rem; }
+.intro .lede { font-size:1.08rem; color:var(--text); }
+.intro p { color:color-mix(in oklab, var(--text) 86%, var(--muted)); }
+.intro ul { padding-left:1.1rem; margin:0 0 1.4rem; }
+.intro li { margin-bottom:.45rem; }
+.intro li::marker { color:var(--accent); }
+
+.pron { margin-top:1.6rem; padding:18px 20px; border-radius:10px; background:var(--surface-2); border:1px solid var(--line); }
+.pron h3 { font-size:1.05rem; margin-bottom:.6rem; display:flex; align-items:center; gap:10px; }
+.pron h3 .ic { color:var(--accent); }
+.pron audio { width:100%; max-width:340px; height:36px; margin-bottom:.8rem; display:block; }
+.pron p { font-size:.95rem; color:var(--muted); margin:0; }
+
+.news .month { font-family:var(--f-mono); font-size:.8rem; color:var(--faint); letter-spacing:.08em; margin:0 0 .6rem; }
+.news article { position:relative; padding:14px 0 14px 20px; }
+.news article::before { content:""; position:absolute; left:0; top:18px; bottom:18px; width:2px; border-radius:2px;
+  background:var(--line); transition: background-color var(--t-fast), box-shadow var(--t-med); }
+.news article:hover::before { background:var(--accent); box-shadow:0 0 12px var(--glow); }
+.news h3 { font-size:1.1rem; margin-bottom:.35rem; }
+.news h3 a { color:var(--text); }
+.news h3 a:hover { color:var(--link); }
+.news p { color:var(--muted); font-size:.95rem; margin:0 0 .4rem; }
+.tags { display:flex; flex-wrap:wrap; gap:6px; }
+.tags a { font-family:var(--f-mono); font-size:.75rem; padding:2px 9px; border-radius:99px; border:1px solid var(--line); color:var(--muted); background:none;
+  transition: border-color var(--t-fast), color var(--t-fast); }
+.tags a:hover { border-color:var(--link); color:var(--link); }
+
+footer { grid-column:1/-1; text-align:right; color:var(--faint); font-size:.85rem; font-family:var(--f-mono); }
+
+@keyframes rise { from { opacity:0; transform:translateY(8px); } }
+.rise { animation: rise .35s var(--ease) both; animation-delay:var(--d,0s); }
+
+@media (max-width: 880px) {
+  .page { grid-template-columns:minmax(0,1fr); padding:16px 16px 40px; gap:20px; }
+  aside { position:static; max-width:420px; width:100%; margin:0 auto; }
+  nav ul { flex-wrap:nowrap; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
+  nav li { flex:none; }
+  .card .panel { padding:22px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { animation:none !important; transition:none !important; }
+}
+
+/* lightbox: native <dialog>, animated in and out (no JS animation) */
+dialog.lb { padding:0; border:0; background:transparent; max-width:92vw; max-height:92vh; cursor:zoom-out;
+  opacity:0; transform:scale(.94);
+  transition: opacity .2s var(--ease), transform .22s var(--ease),
+              overlay .22s allow-discrete, display .22s allow-discrete; }
+dialog.lb[open] { opacity:1; transform:none; }
+dialog.lb::backdrop { background:rgba(4,6,10,0); backdrop-filter:blur(0);
+  transition: background-color .2s, backdrop-filter .2s, overlay .22s allow-discrete, display .22s allow-discrete; }
+dialog.lb[open]::backdrop { background:rgba(4,6,10,.85); backdrop-filter:blur(4px); }
+@starting-style {
+  dialog.lb[open] { opacity:0; transform:scale(.94); }
+  dialog.lb[open]::backdrop { background:rgba(4,6,10,0); backdrop-filter:blur(0); }
+}
+dialog.lb img { display:block; max-width:92vw; max-height:92vh; border-radius:10px; }
+
+/* ============ Mockup controls (not part of design) ============ */
+.ctl { position:fixed; right:16px; bottom:16px; z-index:10; font:13px/1.4 system-ui,sans-serif; color:#ddd;
+  background:rgba(12,12,14,.92); border:1px solid #333; border-radius:10px; padding:12px 14px; display:grid; gap:8px; min-width:220px;
+  box-shadow:0 10px 40px rgba(0,0,0,.5); }
+.ctl b { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#999; cursor:pointer; user-select:none; }
+.ctl small { color:#888; font-size:11px; }
+.ctl label { display:grid; grid-template-columns:60px 1fr; align-items:center; gap:8px; }
+.ctl select { background:#1c1c1f; color:#eee; border:1px solid #3a3a3a; border-radius:6px; padding:3px 6px; font:inherit; }
+.ctl.min > :not(b) { display:none; }
+</style>
+</head>
+<body data-tone="dusk" data-halo="medium">
+
+<div class="page">
+  <aside class="rise">
+    <div class="frame lit profile" style="--phase:-3s">
+      <div class="panel">
+        <a class="photo" href="profile.webp" data-lightbox>
+          <img src="profile.webp" width="800" height="703" alt="Caner Derici">
+          <h1>Caner Derici, PhD</h1>
+        </a>
+        <ul class="facts">
+          <li class="role"><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/briefcase.svg)"></span>Applied Scientist</li>
+          <li class="role"><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/building-2.svg)"></span>Amazon – AWS</li>
+          <li><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/map-pin.svg)"></span>Austin, TX, USA</li>
+          <li><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/github.svg)"></span><a href="https://github.com/cderici">cderici</a></li>
+          <li><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/link.svg)"></span><a href="https://dericilab.live">dericilab.live</a></li>
+          <li><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/mail.svg)"></span><a href="mailto:caner@dericilab.live">caner@dericilab.live</a></li>
+        </ul>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn"><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/linkedin.svg)"></span></a>
+          <a href="#" aria-label="Instagram"><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/instagram.svg)"></span></a>
+          <a href="#" aria-label="Facebook"><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/facebook.svg)"></span></a>
+          <a href="#" aria-label="X"><span class="ic ic-x" style="--i:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/x.svg)"></span></a>
+          <a href="#" aria-label="YouTube"><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/youtube.svg)"></span></a>
+          <a href="#" aria-label="Twitch"><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/twitch.svg)"></span></a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <nav class="rise" style="--d:.04s" aria-label="Main">
+      <ul>
+        <li><a href="#" aria-current="page">Home</a></li>
+        <li><a href="#">Resume/CV</a></li>
+        <li><a href="#">HomeLab</a></li>
+        <li><a href="#">Building a Community</a></li>
+        <li><a href="#">Bike</a></li>
+        <li><a href="#">Music</a></li>
+        <li><a href="#">Artsy</a></li>
+        <li><a href="#">Travel</a></li>
+        <li><a href="#">Arch</a></li>
+        <li><a href="#">Masters Tribute Page</a></li>
+      </ul>
+    </nav>
+
+    <section class="rise" style="--d:.08s">
+      <div class="frame lit card intro" style="--phase:-1s">
+        <div class="panel edge">
+          <div class="label">About</div>
+          <p class="hi">Hi!</p>
+          <p class="lede">I'm a software engineer, PhD computer scientist, homelabber, zerg player, content creator, biker, guitar player, husband, and a dad.</p>
+          <p>I specialize in compilers &amp; programming languages, with work experience in distributed orchestration at scale.</p>
+          <p>I received my doctorate at <a href="#">IU Bloomington</a>, in computer science, specializing in compilers &amp; programming languages, minoring in <a href="#">logic</a>. My research focuses on optimizing run-time performance of production‑grade full‑scale self‑hosting languages on tracing JIT compiler back-ends (<a href="#">dissertation</a>).</p>
+          <p>Check out:</p>
+          <ul>
+            <li><a href="#">Resume/CV</a> page, to learn more about my career, achivements, skills &amp; specialties, etc.</li>
+            <li><a href="#">HomeLab</a> page, to check out the cool stuff I'm learning, building, and experimenting with at home.</li>
+            <li><a href="#">Building a Community</a> page, to check out my content creation and community development adventures on <a href="#">Twitch</a> and <a href="#">YouTube</a>.</li>
+            <li><a href="#">Bike</a>, <a href="#">Music</a>, <a href="#">Arts</a>, <a href="#">Travel</a>, and <a href="#">Arch</a> pages, to get a closer look at my personal life.</li>
+          </ul>
+          <div class="pron">
+            <h3><span class="ic" style="--i:url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/volume-2.svg)"></span>How do you say your name?</h3>
+            <audio controls preload="none" src="../../src/assets/audio/name-pronunciation.opus"></audio>
+            <p>I'm a US national, and this is by far the most common question I get around here. I'm not a native English speaker, but my wife is, so I know how tricky it can be to pronounce. No worries tough, feel free to say it however's easiest for you. Thanks for asking!</p>
+          </div>
+          <p style="margin-top:1.4rem;margin-bottom:0">And thanks for checking out my homepage!</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rise" style="--d:.12s">
+      <div class="frame lit card news" style="--phase:-9s">
+        <div class="panel edge">
+          <div class="label">News &amp; Posts</div>
+          <p class="month">JUNE 2023</p>
+          <article>
+            <h3><a href="#">Manual Provisioning on AWS using Terraform Juju Provider</a></h3>
+            <p>Exploring how to manually provision machines from an existing setup into a Juju model using the Terraform Juju provider.</p>
+            <div class="tags"><a href="#">intro</a><a href="#">k8s proxy-alt</a><a href="#">manual provisioning PR</a><a href="#">provider repo</a></div>
+          </article>
+          <article>
+            <h3><a href="#">A generic way to tunnel into a Kubernetes cluster…</a></h3>
+            <p>Demonstrating access to a controller inside any k8s cluster without proxy-config support—load balancer is the key.</p>
+            <div class="tags"><a href="#">intro</a><a href="#">terraform</a><a href="#">related issue</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Caner Derici, PhD</footer>
+</div>
+
+<dialog class="lb" aria-label="Photo"><img alt=""></dialog>
+
+<div class="ctl" id="ctl">
+  <b title="click to collapse">Mockup controls ▾</b>
+  <label>Blue <select data-k="tone">
+    <option value="dusk" selected>Dusk (chosen)</option>
+    <option value="nexus">Nexus · saturated SC2 blue</option>
+    <option value="warp">Warp · cyan-leaning blue</option>
+    <option value="khala">Khala · royal / indigo</option>
+    <option value="abyss">Abyss · darkest, deep blue</option></select></label>
+  <label>Glow <select data-k="halo">
+    <option value="soft">Soft</option>
+    <option value="medium" selected>Medium (chosen)</option>
+    <option value="strong">Strong</option></select></label>
+  <small id="vp"></small>
+</div>
+
+<script>
+// mockup controls (state kept in the URL hash)
+const b = document.body;
+const fromHash = new URLSearchParams(location.hash.slice(1));
+for (const s of document.querySelectorAll(".ctl select")) {
+  const k = s.dataset.k;
+  if ([...s.options].some(o => o.value === fromHash.get(k))) s.value = fromHash.get(k);
+  b.dataset[k] = s.value;
+  s.addEventListener("change", () => {
+    b.dataset[k] = s.value;
+    location.hash = new URLSearchParams([...document.querySelectorAll(".ctl select")].map(x => [x.dataset.k, x.value])).toString();
+  });
+}
+const vp = () => document.getElementById("vp").textContent = `viewport ${innerWidth}×${innerHeight} · dpr ${devicePixelRatio}`;
+vp(); addEventListener("resize", vp);
+document.querySelector(".ctl b").onclick = () => document.getElementById("ctl").classList.toggle("min");
+
+// native <dialog> lightbox (replaces jQuery + lightbox plugin)
+const dlg = document.querySelector("dialog.lb");
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-lightbox]");
+  if (a) { e.preventDefault(); dlg.querySelector("img").src = a.href; dlg.showModal(); }
+  else if (e.target.closest("dialog.lb")) dlg.close();
+});
+</script>
+</body>
+</html>

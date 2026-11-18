@@ -1,132 +1,63 @@
-<div class="w3-container w3-card caner-card w3-margin-bottom w3-animate-opacity w3-round-large">
-  <div class="w3-right-align w3-text-grey">[click on a title to see details]</div>
-  <h2 class="w3-text-grey w3-padding-16">
-    <i class="fa fa-graduation-cap fa-fw w3-margin-right w3-xxlarge w3-text-deep-orange"></i>
-    Education
-  </h2>
-
-  <!-- PhD Indiana -->
-  <details id="edu-phd-indiana" class="w3-container w3-margin-bottom">
-    <summary class="w3-padding-16 w3-left-align">
-      <strong>PhD Computer Science – Indiana University, IN, USA</strong>
-      <span class="w3-small w3-right"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2015 – 2021</span>
-    </summary>
-    <div class="w3-container">
-
-	  <p>
-		<b>Dissertation:</b> <a href="{{ site.links.dissertation }}" class="lnk">Self-Hosting Functional Programming Languages on Meta-Tracing JIT Compilers</a>
-      </p>
-
-
-      <p>
-        Specialized in Programming Languages (PL) under the supervision of <a href="http://homes.sice.indiana.edu/samth/" class="lnk">Sam Tobin‑Hochstadt</a>, minored in Logic at the <a href="http://www.philosophy.indiana.edu/areas/ll.shtml" class="lnk">Department of Philosophy</a>.
-      </p>
-      <p>
-        My work focuses on fast run‑times of dynamic languages. In the first phase of my research, I investigated the effects of using Racket byte‑code compiler as a frontend for Pycket--studying optimizations like heavy inlining and lambda lifting and their effects on Pycket's run-time.
-      </p>
-      <p>
-        When Racket became more portable and <a href="https://blog.racket-lang.org/2018/01/racket-on-chez-status.html" class="lnk">started adopting Chez Scheme as its primary run time</a>, I pivoted to help that effort. We had a rudimentary Racket implementation, <a href="https://github.com/pycket/pycket" class="lnk">Pycket</a>, a meta‑tracing JIT compiler built on <a href="https://rpython.readthedocs.io/en/latest/" class="lnk">RPython framework</a>. It was designed to demonstrate that <a href="https://github.com/pycket/pycket/tree/master/papers" class="lnk">efficient sound gradual typing is possible</a>. I helped make Racket more portable and adopt Chez Scheme (see <a href="#pub-racket-on-chez" class="lnk">publication</a>). Mimicking Racket’s self‑hosting on Racket‑on‑Chez, I turned Pycket into a full implementation of Racket with a meta‑tracing JIT as its run‑time.
-      </p>
-      <p>
-        <a href="https://pypy.org/" class="lnk">PyPy</a> showed that fast prototyping of efficient run‑times for dynamic languages is possible through meta‑interpretation. My work takes this a step further to show that fast prototyping of efficient run‑times for <strong>self‑hosting</strong> dynamic languages is achievable.
-      </p>
-      <p>
-        Currently <a href="https://github.com/pycket/pycket" class="lnk">Pycket</a> works as a runtime for full self-hosting Racket, including green threads via engines and full rktio via ffi--essentially no different than Racket on Chez.     </p>
-		<p>
-		My <a href="{{ site.links.dissertation }}" class="lnk">dissertation</a> contains all the tecnical details on how this is achieved for the first time ever, along with a full performance investigation of self-hosting a production-grade language on a tracing JIT compiler.
-		</p>
-	<details class="pdf-viewer w3-margin-top w3-center">
-  <summary class="w3-button w3-deep-orange w3-text-white w3-padding-large w3-round-large w3-left-align">
-    <i class="fa fa-file-pdf-o w3-margin-right"></i>
-    View PhD Diploma
-    <span class="w3-small w3-opacity w3-margin-left">expands below</span>
-  </summary>
-
-      <div class="w3-container w3-margin-top">
-        <iframe src="/assets/docs/DericiPhD_Diploma.pdf" width="100%" height="1200px"></iframe>
-      </div>
+{% card "Education", "entries" %}
+  {% entry "PhD Computer Science – Indiana University, IN, USA", "2015 – 2021", "edu-phd-indiana" %}
+    <p>
+      <b>Dissertation:</b> <a href="{{ site.links.dissertation }}">Self-Hosting Functional Programming Languages on Meta-Tracing JIT Compilers</a>
+    </p>
+    <p>
+      Specialized in Programming Languages (PL) under the supervision of <a href="http://homes.sice.indiana.edu/samth/">Sam Tobin‑Hochstadt</a>, minored in Logic at the <a href="http://www.philosophy.indiana.edu/areas/ll.shtml">Department of Philosophy</a>.
+    </p>
+    <p>
+      My work focuses on fast run‑times of dynamic languages. In the first phase of my research, I investigated the effects of using Racket byte‑code compiler as a frontend for Pycket--studying optimizations like heavy inlining and lambda lifting and their effects on Pycket's run-time.
+    </p>
+    <p>
+      When Racket became more portable and <a href="https://blog.racket-lang.org/2018/01/racket-on-chez-status.html">started adopting Chez Scheme as its primary run time</a>, I pivoted to help that effort. We had a rudimentary Racket implementation, <a href="https://github.com/pycket/pycket">Pycket</a>, a meta‑tracing JIT compiler built on <a href="https://rpython.readthedocs.io/en/latest/">RPython framework</a>. It was designed to demonstrate that <a href="https://github.com/pycket/pycket/tree/master/papers">efficient sound gradual typing is possible</a>. I helped make Racket more portable and adopt Chez Scheme (see <a href="#pub-racket-on-chez">publication</a>). Mimicking Racket’s self‑hosting on Racket‑on‑Chez, I turned Pycket into a full implementation of Racket with a meta‑tracing JIT as its run‑time.
+    </p>
+    <p>
+      <a href="https://pypy.org/">PyPy</a> showed that fast prototyping of efficient run‑times for dynamic languages is possible through meta‑interpretation. My work takes this a step further to show that fast prototyping of efficient run‑times for <strong>self‑hosting</strong> dynamic languages is achievable.
+    </p>
+    <p>
+      Currently <a href="https://github.com/pycket/pycket">Pycket</a> works as a runtime for full self-hosting Racket, including green threads via engines and full rktio via ffi--essentially no different than Racket on Chez.
+    </p>
+    <p>
+      My <a href="{{ site.links.dissertation }}">dissertation</a> contains all the tecnical details on how this is achieved for the first time ever, along with a full performance investigation of self-hosting a production-grade language on a tracing JIT compiler.
+    </p>
+    <details class="pdf">
+      <summary>{% icon "file-text" %}View PhD Diploma<span class="hint">expands below</span>{% icon "chevron-right" %}</summary>
+      <iframe src="/assets/docs/DericiPhD_Diploma.pdf" title="PhD diploma (PDF)" loading="lazy"></iframe>
     </details>
+  {% endentry %}
 
+  {% entry "PhD Computer Science – Boğaziçi University, Istanbul, TR", "2014 – 2015" %}
+    <p>
+      This program was a continuation of my MSc in natural language processing and machine learning. After another year of research on the system I built, I decided to pursue a PhD in programming languages instead.
+    </p>
+  {% endentry %}
 
-    </div>
-  </details>
+  {% entry "MSc Computer Engineering – Boğaziçi University, Istanbul, TR", "2012 – 2014", "edu-msc-bogazici" %}
+    <p>
+      I was part of the <a href="http://tabilab.cmpe.boun.edu.tr/">Text Analytics and Bio‑Informatics Lab</a>. I studied the <strong>theory of computation</strong> and <strong>automated theorem proving</strong>, then focused on <strong>machine learning</strong> and <strong>natural language processing</strong>. I worked on a closed‑domain question‑answering system for Turkish high‑school students (a government‑funded project).
+    </p>
+    <dl class="kv">
+      <dt>Thesis title</dt>
+      <dd>Question Analysis and Information Retrieval for a Turkish Question Answering System: HazırCevap (<a href="/assets/docs/caner_msc_thesis.pdf"><strong>PDF</strong></a>)</dd>
+      <dt>Supervisors</dt>
+      <dd>Tunga Güngör, Assoc. Arzucan Özgür, Günizi Kartal</dd>
+      <dt>Abstract</dt>
+      <dd>This study describes and evaluates the techniques developed for the question analysis and information retrieval (IR) module of a closed‑domain Turkish factoid question‑answering system intended to support high‑school students. It proposes novel methods for two major problems—focus extraction and question classification—by integrating a rule‑based approach with an HMM‑based sequence classifier that leverages dependency relations among words. The IR module searches for relevant documents and passages using both Indri and Apache Lucene.</dd>
+    </dl>
+  {% endentry %}
 
-  <!-- PhD Bogazici -->
-  <details class="w3-container w3-margin-bottom">
-    <summary class="w3-padding-16 w3-left-align">
-      <strong>PhD Computer Science – Boğaziçi University, Istanbul, TR</strong>
-      <span class="w3-small w3-right"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2014 – 2015</span>
-    </summary>
-    <div class="w3-container">
-      <p>
-        This program was a continuation of my MSc in natural language processing and machine learning:contentReference[oaicite:4]{index=4}. After another year of research on the system I built, I decided to pursue a PhD in programming languages instead.
-      </p>
-    </div>
-  </details>
-
-  <!-- MSc -->
-  <details id="edu-msc-bogazici" class="w3-container w3-margin-bottom">
-    <summary class="w3-padding-16 w3-left-align">
-      <strong>MSc Computer Engineering – Boğaziçi University, Istanbul, TR</strong>
-      <span class="w3-small w3-right"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2012 – 2014</span>
-    </summary>
-    <div class="w3-container">
-      <p>
-        I was part of the <a href="http://tabilab.cmpe.boun.edu.tr/" class="lnk">Text Analytics and Bio‑Informatics Lab</a>. I studied the <strong>theory of computation</strong> and <strong>automated theorem proving</strong>, then focused on <strong>machine learning</strong> and <strong>natural language processing</strong>:contentReference[oaicite:5]{index=5}. I worked on a closed‑domain question‑answering system for Turkish high‑school students (a government‑funded project).
-      </p>
-      <hr>
-      <div class="w3-container">
-        <div class="w3-quarter">Thesis title</div>
-        <div class="w3-threequarter">Question Analysis and Information Retrieval for a Turkish Question Answering System: HazırCevap (<a href="/docs/msc-thesis.pdf" class="lnk"><strong>PDF</strong></a>)</div>
-      </div>
-      <hr>
-      <div class="w3-container">
-        <div class="w3-quarter">Supervisors</div>
-        <div class="w3-threequarter">Tunga Güngör, Assoc. Arzucan Özgür, Günizi Kartal</div>
-      </div>
-      <hr>
-      <div class="w3-container">
-        <div class="w3-quarter">Abstract</div>
-        <div class="w3-threequarter">
-          This study describes and evaluates the techniques developed for the question analysis and information retrieval (IR) module of a closed‑domain Turkish factoid question‑answering system intended to support high‑school students. It proposes novel methods for two major problems—focus extraction and question classification—by integrating a rule‑based approach with an HMM‑based sequence classifier that leverages dependency relations among words. The IR module searches for relevant documents and passages using both Indri and Apache Lucene:contentReference[oaicite:6]{index=6}.
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <!-- BSc -->
-  <details id="edu-bsc-bilgi" class="w3-container w3-margin-bottom">
-    <summary class="w3-padding-16 w3-left-align">
-      <strong>BSc Computer Science – Istanbul Bilgi University, Istanbul, TR</strong>
-      <span class="w3-small w3-right"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2005 – 2010</span>
-    </summary>
-    <div class="w3-container">
-      <p>
-        I gained both theoretical and practical experience. I programmed in imperative, functional and logic languages, focusing on the <strong>theory of computation</strong> and <strong>programming languages</strong> design and implementation:contentReference[oaicite:7]{index=7}.
-      </p>
-      <hr>
-      <div class="w3-container">
-        <div class="w3-quarter">Thesis title</div>
-        <div class="w3-threequarter">
-          Proper Tail Calls From First‑Class Continuations in JavaScript (
-          <a href="https://cderici.github.io/docs/bsc-thesis/caner_thesis.pdf" class="lnk"><strong>PDF</strong></a> |
-          <a href="https://cderici.github.io/docs/bsc-thesis/thesis.tar.gz" class="lnk"><strong>tex</strong></a>)
-        </div>
-      </div>
-      <hr>
-      <div class="w3-container">
-        <div class="w3-quarter">Supervisors</div>
-        <div class="w3-threequarter">Chris Stephenson, Shriram Krishnamurthi, Alpaslan Parlakçı, Matthew Edwards</div>
-      </div>
-      <hr>
-      <div class="w3-container">
-        <div class="w3-quarter">Abstract</div>
-        <div class="w3-threequarter">
-          This thesis demonstrates that proper tail‑call behaviour in JavaScript is possible without modifying the interpreter. It is based on the paper “Continuations from Generalized Stack Inspection” (Pettyjohn et al.), which presents a program transformation for obtaining first‑class continuations from exception‑handling mechanisms. My work extends their technique to achieve tail‑call optimized computation without touching the interpreter.
-        </div>
-      </div>
-    </div>
-  </details>
-  <br>
-</div>
-
+  {% entry "BSc Computer Science – Istanbul Bilgi University, Istanbul, TR", "2005 – 2010", "edu-bsc-bilgi" %}
+    <p>
+      I gained both theoretical and practical experience. I programmed in imperative, functional and logic languages, focusing on the <strong>theory of computation</strong> and <strong>programming languages</strong> design and implementation.
+    </p>
+    <dl class="kv">
+      <dt>Thesis title</dt>
+      <dd>Proper Tail Calls From First‑Class Continuations in JavaScript (<a href="/assets/docs/caner_bsc_thesis.pdf"><strong>PDF</strong></a>)</dd>
+      <dt>Supervisors</dt>
+      <dd>Chris Stephenson, Shriram Krishnamurthi, Alpaslan Parlakçı, Matthew Edwards</dd>
+      <dt>Abstract</dt>
+      <dd>This thesis demonstrates that proper tail‑call behaviour in JavaScript is possible without modifying the interpreter. It is based on the paper “Continuations from Generalized Stack Inspection” (Pettyjohn et al.), which presents a program transformation for obtaining first‑class continuations from exception‑handling mechanisms. My work extends their technique to achieve tail‑call optimized computation without touching the interpreter.</dd>
+    </dl>
+  {% endentry %}
+{% endcard %}

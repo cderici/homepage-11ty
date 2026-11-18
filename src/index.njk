@@ -1,92 +1,62 @@
 ---
-layout: base.njk
+layout: page.njk
 title: Home
+glow: ember
 permalink: "/"
 ---
 
-<!-- Page Container -->
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
-  <div class="w3-row-padding">
+{% card "About", "intro" %}
+  <p class="hi">Hi!</p>
 
-    <!-- Left Column -->
-    <div class="w3-quarter">
-      {% include "left-card.njk" %}
-    </div>
+  <p class="lede">
+    I'm a software engineer, PhD computer scientist, homelabber, zerg player, content creator, biker, guitar player, husband, and a dad.
+  </p>
 
-    <!-- Right Column -->
-    <div class="w3-threequarter">
+  <p>
+    I specialize in compilers &amp; programming languages, with
+    work experience in distributed orchestration at scale.
+  </p>
 
-      {# Page-local navigation bar (Option B) #}
-      {% include "header.njk" %}
+  <p>
+    I received my doctorate at <a href="https://sice.indiana.edu/">IU Bloomington</a>, in computer science,
+    specializing in compilers &amp; programming languages, minoring in
+    <a href="https://philosophy.indiana.edu/student-portal/graduate/minors/pure-and-applied-logic-certificate.html">logic</a>.
+    My research focuses on optimizing run-time performance of production‑grade full‑scale self‑hosting languages on tracing JIT compiler back-ends (<a href="{{ site.links.dissertation }}">dissertation</a>).
+  </p>
 
-      <!-- Intro section (white card) -->
-      <div class="w3-container w3-card caner-card w3-margin-bottom w3-animate-opacity w3-round-large">
-        <div class="w3-container w3-margin-left w3-margin-top">
-          <p>Hi!</p>
+  <!--
+  <p>
+    I joined <a href="https://en.wikipedia.org/wiki/Canonical_(company)" class="lnk">Canonical</a> to understand and practice distributed orchestration at scale, where I worked about three years as a part of the <a href="https://github.com/juju" class="lnk">Juju</a> team.
+  </p>
+  -->
 
-          <p>
-            I'm a software engineer, PhD computer scientist, homelabber, zerg player, content creator, biker, guitar player, husband, and a dad.
-          </p>
+  <p>Check out:</p>
+  <ul>
+    <li><a href="/cv/">Resume/CV</a> page, to learn more about my career, achivements, skills &amp; specialties, etc.</li>
+    <li><a href="/homelab/">HomeLab</a> page, to check out the cool stuff I'm learning, building, and experimenting with at home.</li>
+    <li>
+      <a href="/content/">Building a Community</a> page, to check out my content creation and community development adventures on
+      <a href="https://twitch.tv/{{ site.social.twitch }}">Twitch</a> and
+      <a href="https://www.youtube.com/channel/{{ site.social.youtube }}">YouTube</a>.
+    </li>
+    <li>
+      <a href="/bike/">Bike</a>,
+      <a href="/music/">Music</a>,
+      <a href="/artsy/">Arts</a>,
+      <a href="/travel/">Travel</a>, and
+      <a href="/arch/">Arch</a> pages, to get a closer look at my personal life.
+    </li>
+  </ul>
 
-          <p>
-            I specialize in compilers &amp; programming languages, with 
-            work experience in distributed orchestration at scale.
-          </p>
+  <div class="pron">
+    <h3>{% icon "volume-2" %}How do you say your name?</h3>
+    <audio controls preload="none" src="/assets/audio/name-pronunciation.opus"></audio>
+    <p>
+      I'm a US national, and this is by far the most common question I get around here. I'm not a native English speaker, but my wife is, so I know how tricky it can be to pronounce. No worries tough, feel free to say it however's easiest for you. Thanks for asking!
+    </p>
+  </div>
 
-          <p>
-            I received my doctorate at <a href="https://sice.indiana.edu/" class="lnk">IU Bloomington</a>, in computer science,
-            specializing in compilers &amp; programming languages, minoring in
-            <a href="https://philosophy.indiana.edu/student-portal/graduate/minors/pure-and-applied-logic-certificate.html" class="lnk">logic</a>.
-            My research focuses on optimizing run-time performance of production‑grade full‑scale self‑hosting languages on tracing JIT compiler back-ends (<a href="{{ site.links.dissertation }}" class="lnk">dissertation</a>).
-          </p>
+  <p class="signoff">And thanks for checking out my homepage!</p>
+{% endcard %}
 
-		<!--
-          <p>
-		    I joined <a href="https://en.wikipedia.org/wiki/Canonical_(company)" class="lnk">Canonical</a> to understand and practice distributed orchestration at scale, where I worked about three years as a part of the <a href="https://github.com/juju" class="lnk">Juju</a> team.
-          </p>
-		  -->
-
-          <p>Check out:</p>
-          <ul>
-            <li>
-              <a href="/cv" class="lnk">Resume/CV</a> page, to learn more about my career, achivements, skills & specialties, etc.
-            </li>
-            <li>
-              <a href="/homelab" class="lnk">HomeLab</a> page, to check out the cool stuff I'm learning, building, and experimenting with at home.
-            </li>
-            <li>
-              <a href="/content" class="lnk">Building a Community</a> page, to check out my content creation and community development adventures on
-              <a href="http://twitch.tv/{{ site.social.twitch }}" class="lnk">Twitch</a> and
-              <a href="https://www.youtube.com/channel/{{ site.social.youtube }}" class="lnk">YouTube</a>.
-            </li>
-            <li>
-              <a href="/bike" class="lnk">Bike</a>,
-              <a href="/music" class="lnk">Music</a>,
-              <a href="/artsy" class="lnk">Arts</a>,
-              <a href="/travel" class="lnk">Travel</a>, and
-              <a href="/arch" class="lnk">Arch</a> pages, to get a closer look at my personal life.
-            </li>
-          </ul>
-		  <br>
-
-		<h4>How do you say your name?</h4>
-		<div class="name-pronunciation">
-		  <audio class="audio-right" controls src="/assets/audio/name-pronunciation.opus"></audio>
-		  <p>
-		  I'm a US national, and this is by far the most common question I get around here. I'm not a native English speaker, but my wife is, so I know how tricky it can be to pronounce. No worries tough, feel free to say it however's easiest for you. Thanks for asking!
-          </p>
-		  </div>
-
-          <p>And thanks for checking out my homepage!</p>
-		  <br>
-		  <br>
-
-        </div>
-      </div>
-
-      <!-- News & Posts section -->
-      {% include "news.njk" %}
-
-    </div><!-- /Right Column -->
-  </div><!-- /Row -->
-</div><!-- /Page Container -->
+{% include "news.njk" %}

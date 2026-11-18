@@ -1,34 +1,6 @@
-<div class="w3-container w3-card caner-card w3-margin-bottom w3-round-large">
-  <h2 class="w3-text-grey w3-padding-16">
-    <i class="fa fa-language fa-fw w3-margin-right w3-xxlarge w3-text-deep-orange"></i>
-    Natural Languages
-  </h2>
-  <div class="w3-container">
-    <div class="w3-row">
-      <div class="w3-col m2">Turkish</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align"><em>Native</em></div>
-    </div>
-    <div class="w3-row">
-      <div class="w3-col m2">English</div>
-      <div class="w3-col m2">
-        <i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-        <i class="fa fa-star w3-text-deep-orange"></i>
-      </div>
-      <div class="w3-col m8 w3-right-align">
-        <em>Lived in the USA since 2015. My wife is a native English speaker.</em>
-      </div>
-    </div>
-  </div>
-  <br>
-</div>
-
+{% card "Natural Languages" %}
+  <ul class="ratings">
+    <li><span class="what">Turkish</span>{% stars 5 %}<span class="note">Native</span></li>
+    <li><span class="what">English</span>{% stars 5 %}<span class="note">Lived in the USA since 2015. My wife is a native English speaker.</span></li>
+  </ul>
+{% endcard %}
