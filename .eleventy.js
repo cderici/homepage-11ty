@@ -42,6 +42,16 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/favicon": "/" });
   eleventyConfig.addPassthroughCopy("src/CNAME");
 
+  // The pre-redesign site, frozen as static files for the old/new look switch
+  // (see design/classic/make_snapshot.py). Copied as-is: never treated as
+  // templates or touched by the image transform.
+  eleventyConfig.ignores.add("src/classic/**");
+  eleventyConfig.addPassthroughCopy({ "src/classic": "classic" });
+  eleventyConfig.addPassthroughCopy({
+    "src/_includes/look-switch.css": "classic/look-switch.css",
+    "src/_includes/look-switch.js": "classic/look-switch.js",
+  });
+
   // Images. Every local <img> becomes a WebP srcset (400/800/1600w, never
   // upscaled) with width/height, so pages don't shift as photos load.
   // Set `sizes` on images narrower than the content column, and
