@@ -46,6 +46,7 @@
 
     <div class="column">
       {% include "nav.njk" %}
+      {% if site.life | hasHref(page.url) %}{% include "life-nav.njk" %}{% endif %}
       <main id="content">
         {{ content | safe }}
       </main>
@@ -55,6 +56,7 @@
   </div>
 
   <button class="to-top" type="button" aria-label="Back to top">{% icon "arrow-up" %}</button>
+  <a class="masters-link" href="/masters/" title="Grandmasters of Computer Science"{% if page.url == "/masters/" %} aria-current="page"{% endif %}>{% icon "award" %}<span>Masters Tribute</span></a>
   <a class="look-switch" href="/classic{{ page.url }}" title="See this page in the old design">{% icon "history" %}Old look</a>
   <dialog class="lightbox" aria-label="Photo viewer">
     <figure>

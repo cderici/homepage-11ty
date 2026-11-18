@@ -127,6 +127,9 @@ export default function(eleventyConfig) {
     return `<details class="entry"${idAttr}><summary>${icon("chevron-right")}<span class="what">${title}</span>${date}</summary><div class="entry-body">${content}</div></details>`;
   });
 
+  // is `url` one of the links in a list of {href, …}? (site.life | hasHref(page.url))
+  eleventyConfig.addFilter("hasHref", (list = [], url) => list.some((item) => item.href === url));
+
   // date filter: {{ "now" | date("yyyy") }} or {{ someDate | date("yyyy-LL-dd") }}
   eleventyConfig.addFilter("date", (value, format = "yyyy") => {
     const d = value === "now" ? new Date() : value;

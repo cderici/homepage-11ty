@@ -24,15 +24,54 @@
     "page_music": "/music/"
   },
   "nav": [
-    { "href": "/", "label": "Home" },
-    { "href": "/cv/", "label": "Resume/CV" },
-    { "href": "/homelab/", "label": "HomeLab" },
-    { "href": "/content/", "label": "Building a Community" },
-    { "href": "/bike/", "label": "Bike" },
-    { "href": "/music/", "label": "Music" },
-    { "href": "/artsy/", "label": "Artsy" },
-    { "href": "/travel/", "label": "Travel" },
-    { "href": "/arch/", "label": "Arch" },
-    { "href": "/masters/", "label": "Masters Tribute Page" }
+    {
+      "href": "/",
+      "label": "Home"
+    },
+    {
+      "href": "/cv/",
+      "label": "Resume/CV"
+    },
+    {
+      "href": "/homelab/",
+      "label": "HomeLab"
+    },
+    {
+      "href": "/content/",
+      "label": "Life",
+      "section": "life"
+    }
+  ],
+  "life": [
+    {
+      "href": "/content/",
+      "label": "Building a Community",
+      "icon": "users"
+    },
+    {
+      "href": "/bike/",
+      "label": "Bike",
+      "icon": "bike"
+    },
+    {
+      "href": "/music/",
+      "label": "Music",
+      "icon": "guitar"
+    },
+    {
+      "href": "/artsy/",
+      "label": "Artsy",
+      "icon": "palette"
+    },
+    {
+      "href": "/travel/",
+      "label": "Travel",
+      "icon": "plane"
+    },
+    {
+      "href": "/arch/",
+      "label": "Arch",
+      "icon": "heart"
+    }
   ]
 }

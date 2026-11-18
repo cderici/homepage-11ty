@@ -1,0 +1,9 @@
+{# Second nav row on the Life pages (site.life): smaller tabs, right-aligned
+   under the top nav. #}
+<nav class="sub-nav" aria-label="Life">
+  <ul>
+    {% for s in site.life %}
+      <li><a class="nav-btn" href="{{ s.href }}"{% if page.url == s.href %} aria-current="page"{% endif %}>{% icon s.icon %}<span>{{ s.label }}</span></a></li>
+    {% endfor %}
+  </ul>
+</nav>

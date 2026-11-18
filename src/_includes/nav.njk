@@ -1,7 +1,13 @@
+{# Top nav. "Life" stands for the pages in site.life, which get their own
+   sub-nav (life-nav.njk); it stays lit on all of them. #}
+{%- set inLife = site.life | hasHref(page.url) %}
 <nav class="site-nav" aria-label="Main">
   <ul>
     {% for item in site.nav %}
-      <li><a href="{{ item.href }}"{% if page.url == item.href %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+      {%- if page.url == item.href %}{% set current = "page" %}
+      {%- elif item.section == "life" and inLife %}{% set current = "true" %}
+      {%- else %}{% set current = "" %}{% endif %}
+      <li><a class="nav-btn" href="{{ item.href }}"{% if current %} aria-current="{{ current }}"{% endif %}>{{ item.label }}</a></li>
     {% endfor %}
   </ul>
 </nav>
