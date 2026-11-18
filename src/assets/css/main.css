@@ -1111,32 +1111,6 @@
   .pron audio { display: block; width: 100%; max-width: 340px; height: 36px; margin-bottom: .8rem; }
   .pron p { margin: 0; font-size: .95rem; color: var(--muted); }
 
-  /* home: news */
-  .news .month {
-    margin: 0 0 .6rem;
-    font-family: var(--f-mono);
-    font-size: .8rem;
-    font-weight: 400;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--faint);
-  }
-  .news article { position: relative; padding: 14px 0 14px 20px; }
-  .news article::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 18px; bottom: 18px;
-    width: 2px;
-    border-radius: 2px;
-    background: var(--line);
-    transition: background-color var(--t-fast), box-shadow var(--t-med);
-  }
-  .news article:hover::before { background: var(--accent); box-shadow: 0 0 12px var(--glow); }
-  .news h4 { margin-bottom: .35rem; font-size: 1.1rem; }
-  .news h4 a { color: var(--text); transition: color var(--t-fast), background-size var(--t-med) var(--ease); }
-  .news h4 a:hover { color: var(--link); }
-  .news p { margin: 0 0 .4rem; font-size: .95rem; color: var(--muted); }
-
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
   .tags a {
     display: block;
