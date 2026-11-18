@@ -85,10 +85,10 @@
   --glow:   #55cfe8;   /* travelling light, hover glow */
 
   /* backdrop glows */
-  --tint-a: #ff6a1a;   /* warm, top-left */
+  --tint-a: #ff6a1a;   /* warm, top-left ("ember"; set per page, below) */
   --tint-b: #55cfe8;   /* cool, right */
   --tint-c: #2f63b8;   /* broad blue, top and bottom */
-  --halo:   1.7;       /* overall backdrop glow strength */
+  --halo:   2.33;      /* overall backdrop glow strength */
 
   /* type */
   --f-head: "Inter", system-ui, sans-serif;
@@ -104,6 +104,15 @@
   --t-med:  .2s;
   --ease:   cubic-bezier(.2, .8, .2, 1);
 }
+
+/* each page tints the warm top-left glow (--tint-a) its own colour,
+   chosen with `glow:` in the page's front matter (default: ember) */
+[data-glow="solar"]   { --tint-a: #ffb03a; }  /* gold, starlight */
+[data-glow="void"]    { --tint-a: #8b5cff; }  /* violet */
+[data-glow="nebula"]  { --tint-a: #e049d0; }  /* magenta */
+[data-glow="psi"]     { --tint-a: #2f7bff; }  /* electric blue */
+[data-glow="nerazim"] { --tint-a: #25e0a8; }  /* spectral green */
+[data-glow="crimson"] { --tint-a: #ff2e4d; }  /* red */
 
 /* ---------------------------------------------------------------------------
    Base
