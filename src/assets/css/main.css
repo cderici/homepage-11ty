@@ -911,7 +911,7 @@
   .insta { display: flex; justify-content: center; margin: .4rem 0 1.4rem; }
   .insta .instagram-media { width: min(100%, 540px); min-width: 0 !important; margin: 0 !important; border-radius: var(--r-sm) !important; }
 
-  /* embedded pages (status board, kit list) */
+  /* embedded pages (the homelab status board) */
   .embed {
     display: block;
     width: 100%;

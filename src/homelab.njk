@@ -25,7 +25,7 @@ profileImageMin: /assets/img/homelab-2024-min.jpg
   <h3>Compute</h3>
   <p>
     My compute node is a Proxmox node running on a
-    <a href="https://kit.co/canerderici/homelab/dell-poweredge-r630">Dell PowerEdge R630</a>,
+    Dell PowerEdge R630,
     40 cores, 192&nbsp;GB RAM. Here’s a quick breakdown:
   </p>
   <div class="media">
@@ -41,15 +41,11 @@ profileImageMin: /assets/img/homelab-2024-min.jpg
       <li>Laptop: Dell XPS 13, Intel i7, 32&nbsp;GB RAM.</li>
     </ul>
   </div>
-  <p>
-    If you're interested in the current physical equipment in the lab, check out
-    <a href="https://kit.co/canerderici/homelab">my homelab kit</a>.
-  </p>
 
   <h3>Infra</h3>
   <p>
     My infrastructure node is another Proxmox box running on a
-    <a href="https://kit.co/canerderici/homelab/6304498-dell-poweredge-r720-">Dell PowerEdge R720</a>,
+    Dell PowerEdge R720,
     24 cores, 128&nbsp;GB RAM. Here’s the setup:
   </p>
   <div class="media">
@@ -110,16 +106,11 @@ profileImageMin: /assets/img/homelab-2024-min.jpg
 {% card "Physical Stuff", "prose" %}
   <p>
     For the physical infrastructure I have a
-    <a href="https://kit.co/canerderici/homelab/6304502-sysracks-server-rack">Sysracks</a> 32U rack,
+    Sysracks 32U rack,
     a couple of Raspberry Pis (one periodically updates Cloudflare for DDNS), and an
-    <a href="https://kit.co/canerderici/homelab/6304513-apc-ups-1500va-ups-b">APC UPS</a> to keep
+    APC UPS to keep
     things alive long enough to shut down gracefully during power outages. I also power the modem and router via
     the UPS to keep the internet up as long as possible—which helps since my wife and I both work remotely. Our
     local setups are also on small UPS units to keep the power clean.
   </p>
-  {# kit.co shut down its user pages (HTTP 410), so the embedded gear list is blank.
-     Kept here until the content phase decides what replaces it.
-  <p>Here’s the current list of gear in the server room:</p>
-  <iframe class="embed kit" src="https://kit.co/embed?url=https%3A%2F%2Fkit.co%2Fcanerderici%2Fhomelab" title="Homelab gear on kit.co" loading="lazy"></iframe>
-  #}
 {% endcard %}
