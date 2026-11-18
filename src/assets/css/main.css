@@ -235,7 +235,9 @@
 
   /* frame: a 1px border around a panel, with a slow light travelling round it
      (two arcs of a conic gradient, rotated by animating --a) and a soft
-     blurred bloom of the same light behind the panel */
+     blurred bloom of the same light behind the panel.
+     The light lives on the frame's two empty pseudo-elements, so each
+     animation tick only restyles them, not the whole card beneath. */
   .frame {
     --glow-k: .6;    /* light strength */
     --orbit: 16s;    /* one lap */
@@ -244,29 +246,30 @@
     isolation: isolate;
     padding: 1px;
     border-radius: var(--r);
-    background:
-      conic-gradient(from var(--a),
-        transparent 0deg,
-        color-mix(in oklab, var(--glow) calc(var(--glow-k) * 100%), transparent) 30deg,
-        transparent 75deg,
-        transparent 180deg,
-        color-mix(in oklab, var(--glow) calc(var(--glow-k) * 45%), transparent) 206deg,
-        transparent 240deg),
-      linear-gradient(var(--line), var(--line));
-    animation: orbit var(--orbit) linear infinite;
-    animation-delay: var(--phase, 0s);
+    background: var(--line);
   }
+  .frame::before,
   .frame::after {
     content: "";
     position: absolute;
-    inset: -2px;
-    z-index: -1;
+    z-index: -1;      /* above the frame's own line colour, below the panel */
     border-radius: inherit;
-    background: inherit;
-    animation: inherit;
+    background: conic-gradient(from var(--a),
+      transparent 0deg,
+      color-mix(in oklab, var(--glow) calc(var(--glow-k) * 100%), transparent) 30deg,
+      transparent 75deg,
+      transparent 180deg,
+      color-mix(in oklab, var(--glow) calc(var(--glow-k) * 45%), transparent) 206deg,
+      transparent 240deg);
+    animation: orbit var(--orbit) linear infinite;
+    animation-delay: var(--phase, 0s);
+    pointer-events: none;
+  }
+  .frame::before { inset: 0; }
+  .frame::after {
+    inset: -2px;
     filter: blur(8px);
     opacity: var(--bloom);
-    pointer-events: none;
   }
   /* start each frame's light at a different point so they don't move in step */
   .profile { --phase: -3s; }
@@ -275,7 +278,7 @@
   main > :nth-child(4n + 3) .frame { --phase: -5s; }
   main > :nth-child(4n + 4) .frame { --phase: -13s; }
 
-  .frame.idle { animation-play-state: paused; }  /* set by main.js when off screen */
+  .frame.idle::before, .frame.idle::after { animation-play-state: paused; }  /* set by main.js when off screen */
 
   /* a faint accent line along the top edge of content cards */
   .card .panel { position: relative; }
